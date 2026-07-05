@@ -1,0 +1,51 @@
+{{- $hp := hugo.Data.homepage -}}
+<footer class="site-footer" id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/" aria-label="Thamdee — กลับหน้าแรก">
+          {{ partial "logo.html" . }}
+          <span class="brand-text brand-text-light">Thamdee<span class="brand-dot">.</span></span>
+        </a>
+        <p>{{ $hp.footer.about }}</p>
+        <p class="footer-tagline">{{ site.Params.tagline_th }} — <em>{{ site.Params.tagline_en }}</em></p>
+      </div>
+
+      <nav class="footer-col" aria-label="โปรเจกต์ในเครือ">
+        <h2 class="footer-heading">Ecosystem</h2>
+        <ul>
+          {{ range hugo.Data.projects }}
+          <li><a href="{{ .url }}">{{ .title }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="ลิงก์เว็บไซต์">
+        <h2 class="footer-heading">เว็บไซต์นี้</h2>
+        <ul>
+          <li><a href="/#about">เกี่ยวกับ Thamdee</a></li>
+          <li><a href="/#founder">เกี่ยวกับผู้จัดทำ</a></li>
+          <li><a href="/#contact">ติดต่อและแจ้งข้อเสนอแนะ</a></li>
+          <li><a href="/privacy/">นโยบายความเป็นส่วนตัว</a></li>
+          <li><a href="/terms/">ข้อกำหนดการใช้งาน</a></li>
+          <li><a href="/disclaimer/">ข้อจำกัดความรับผิดชอบ</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <h2 class="footer-heading">ติดตามเรา</h2>
+        <ul>
+          <li><a href="{{ site.Params.youtube }}">YouTube</a></li>
+          <li><a href="{{ site.Params.tiktok }}">TikTok</a></li>
+          <li><a href="https://hub.thamdee.com">Thamdee Hub</a></li>
+          <li><a href="mailto:{{ site.Params.contactEmail }}">{{ site.Params.contactEmail }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {{ site.Params.foundingYear }}–{{ now.Year }} Thamdee. สงวนลิขสิทธิ์</p>
+      <p class="footer-ai-note">{{ $hp.footer.ai_note }}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,62 @@
+baseURL = "https://thamdee.com/"
+locale = "th-TH"
+defaultContentLanguage = "th"
+title = "Thamdee Ecosystem — ระบบนิเวศแห่งการเรียนรู้ เทคโนโลยี และสิ่งดี ๆ"
+enableRobotsTXT = false # ใช้ static/robots.txt ของเราเอง
+timeZone = "Asia/Bangkok"
+
+# ปิดส่วนที่ยังไม่ใช้ เพื่อความเร็วและความสะอาดของ output
+disableKinds = ["taxonomy", "term", "rss", "section"]
+
+[pagination]
+  pagerSize = 12
+
+[params]
+  siteName = "Thamdee Ecosystem"
+  shortName = "Thamdee"
+  description = "Thamdee Ecosystem คือระบบนิเวศของการเรียนรู้ เทคโนโลยี และคอนเทนต์ รวมแอปมือถือ ศูนย์ความรู้สำหรับครู ผู้บริหาร กฎหมายการศึกษา และคอนเทนต์ AI ไว้ในที่เดียว"
+  tagline_th = "ทำสิ่งดี ให้เกิดประโยชน์จริง"
+  tagline_en = "Good things, made truly useful."
+  contactEmail = "contact@thamdee.com"
+  ogImage = "/images/og-cover.png"
+  # โซเชียลหลักของแบรนด์ (ใช้ใน footer และ schema sameAs)
+  youtube = "https://youtube.thamdee.com"
+  tiktok = "https://tiktok.thamdee.com"
+  # ปีเริ่มต้นสำหรับ copyright
+  foundingYear = 2024
+
+[menus]
+  [[menus.main]]
+    name = "หน้าแรก"
+    url = "/"
+    weight = 10
+  [[menus.main]]
+    name = "Ecosystem"
+    url = "/#ecosystem"
+    weight = 20
+  [[menus.main]]
+    name = "แอป"
+    url = "/#apps"
+    weight = 30
+  [[menus.main]]
+    name = "ศูนย์ความรู้"
+    url = "/#knowledge"
+    weight = 40
+  [[menus.main]]
+    name = "คอนเทนต์"
+    url = "/#content"
+    weight = 50
+  [[menus.main]]
+    name = "เกี่ยวกับ"
+    url = "/#about"
+    weight = 60
+  [[menus.main]]
+    name = "ติดต่อ"
+    url = "/#contact"
+    weight = 70
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[minify]
+  minifyOutput = true

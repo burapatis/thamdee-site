@@ -1,0 +1,100 @@
+# โปรเจกต์ทั้งหมดในเครือ Thamdee Ecosystem
+# Content Model: Project Card
+#   id          : รหัสอ้างอิงภายใน (ใช้เป็น anchor/icon key)
+#   title       : ชื่อโปรเจกต์ (ไทย)
+#   title_en    : ชื่อภาษาอังกฤษสั้น ๆ
+#   category    : app | content | knowledge
+#   category_label : ป้ายหมวดที่แสดงบนการ์ด
+#   description : คำอธิบาย 1–2 ประโยค พร้อมใช้บนหน้าเว็บ
+#   url         : ลิงก์ปลายทาง (subdomain)
+#   cta         : ข้อความบนปุ่ม/ลิงก์
+#   status      : live | coming-soon | featured
+#   audience    : กลุ่มผู้ใช้หลัก (แสดงเป็น meta บนการ์ด)
+
+- id: apps
+  title: "แอปมือถือ Thamdee"
+  title_en: "Thamdee Apps"
+  category: app
+  category_label: "แอปพลิเคชัน"
+  description: "รวมแอปที่พัฒนาโดย Thamdee ทั้งด้านสุขภาพ การเตือนความจำ การทำงาน และการเรียนรู้ ออกแบบให้ใช้ง่ายสำหรับทุกวัย"
+  url: "https://app.thamdee.com"
+  cta: "ดูแอปทั้งหมด"
+  status: live
+  audience: "ทุกคนในชีวิตประจำวัน"
+
+- id: youtube
+  title: "ช่อง YouTube"
+  title_en: "Thamdee on YouTube"
+  category: content
+  category_label: "วิดีโอความรู้"
+  description: "วิดีโอเจาะลึกเรื่อง AI เทคโนโลยี การศึกษา และแนวโน้มโลก อธิบายให้เข้าใจง่ายและนำไปใช้ได้จริง"
+  url: "https://youtube.thamdee.com"
+  cta: "ดูช่อง YouTube"
+  status: live
+  audience: "ผู้ที่ชอบเรียนรู้แบบเจาะลึก"
+
+- id: tiktok
+  title: "ช่อง TikTok"
+  title_en: "Thamdee on TikTok"
+  category: content
+  category_label: "คอนเทนต์สั้น"
+  description: "ความรู้แบบสั้น กระชับ เข้าใจได้ในไม่กี่นาที เหมาะกับการเรียนรู้เร็วระหว่างวัน"
+  url: "https://tiktok.thamdee.com"
+  cta: "ดูช่อง TikTok"
+  status: live
+  audience: "ผู้เรียนรู้ยุคใหม่"
+
+- id: hub
+  title: "Thamdee Hub"
+  title_en: "Thamdee Hub"
+  category: knowledge
+  category_label: "ศูนย์รวมคอนเทนต์"
+  description: "ศูนย์รวมบทความ ข่าวสาร คู่มือ และแหล่งเรียนรู้จากทุกโปรเจกต์ของ Thamdee ในที่เดียว"
+  url: "https://hub.thamdee.com"
+  cta: "เข้าสู่ Thamdee Hub"
+  status: live
+  audience: "ผู้อ่านทุกกลุ่ม"
+
+- id: teacher
+  title: "ความรู้วิชาชีพครู"
+  title_en: "Teacher Knowledge"
+  category: knowledge
+  category_label: "ศูนย์ความรู้"
+  description: "หลักการ มาตรฐาน จรรยาบรรณ และแนวทางพัฒนาวิชาชีพ พร้อมเครื่องมือที่ครูไทยนำไปใช้ได้จริง"
+  url: "https://teacher.thamdee.com"
+  cta: "สำหรับครู"
+  status: live
+  audience: "ครูและบุคลากรทางการศึกษา"
+
+- id: gced
+  title: "ความรู้ GCED"
+  title_en: "GCED Knowledge"
+  category: knowledge
+  category_label: "ศูนย์ความรู้"
+  description: "Global Citizenship Education, EIU, สันติภาพ และความเข้าใจระหว่างวัฒนธรรม เพื่อการอยู่ร่วมกันในโลกยุคใหม่"
+  url: "https://gced.thamdee.com"
+  cta: "เรียนรู้ GCED"
+  status: live
+  audience: "ครู ผู้เรียน และผู้สนใจพลเมืองโลก"
+
+- id: admin
+  title: "ความรู้ผู้บริหารสถานศึกษา"
+  title_en: "School Leadership"
+  category: knowledge
+  category_label: "ศูนย์ความรู้"
+  description: "ภาวะผู้นำ การบริหารโรงเรียน มาตรฐานวิชาชีพ และการพัฒนาคุณภาพการศึกษาอย่างเป็นระบบ"
+  url: "https://admin.thamdee.com"
+  cta: "สำหรับผู้บริหาร"
+  status: live
+  audience: "ผู้บริหารสถานศึกษา"
+
+- id: law
+  title: "กฎหมายการศึกษา"
+  title_en: "Education Law"
+  category: knowledge
+  category_label: "ศูนย์ความรู้"
+  description: "แหล่งรวมกฎหมายการศึกษาที่คัดสรรและจัดหมวดหมู่ไว้ให้ค้นง่าย เพื่อความสะดวกในการศึกษา อ้างอิง และแลกเปลี่ยนเรียนรู้"
+  url: "https://law.thamdee.com"  # หากใช้ subdomain อื่น แก้ค่านี้ได้เลย
+  cta: "ค้นกฎหมายการศึกษา"
+  status: live
+  audience: "ครู ผู้บริหาร บุคลากร และผู้สนใจกฎหมาย"

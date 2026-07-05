@@ -1,0 +1,230 @@
+{{ define "main" }}
+{{- $hp := hugo.Data.homepage -}}
+{{- $projects := hugo.Data.projects -}}
+
+<!-- ═══ Hero ═══ -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">{{ $hp.hero.eyebrow }}</p>
+      <h1 id="hero-heading">{{ $hp.hero.headline }}</h1>
+      <p class="hero-sub">{{ $hp.hero.subheadline }}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ $hp.hero.cta_primary.url }}">{{ $hp.hero.cta_primary.label }}{{ partial "icon.html" "arrow" }}</a>
+        <a class="btn btn-ghost" href="{{ $hp.hero.cta_secondary.url }}">{{ $hp.hero.cta_secondary.label }}</a>
+      </div>
+      <p class="hero-note">{{ $hp.hero.note }}</p>
+    </div>
+    <div class="hero-visual">
+      {{ partial "orbit.html" . }}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ About ═══ -->
+<section id="about" class="section" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{{ $hp.about.eyebrow }}</p>
+      <h2 id="about-heading">{{ $hp.about.heading }}</h2>
+      <p class="lead">{{ $hp.about.lead }}</p>
+    </div>
+    <ul class="pillar-grid" role="list">
+      {{ range $hp.about.pillars }}
+      <li class="pillar reveal">
+        <span class="pillar-check">{{ partial "icon.html" "check" }}</span>
+        <h3>{{ .title }}</h3>
+        <p>{{ .description }}</p>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ Ecosystem: ทั้ง 7 โปรเจกต์ ═══ -->
+<section id="ecosystem" class="section section-alt" aria-labelledby="eco-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{{ $hp.ecosystem.eyebrow }}</p>
+      <h2 id="eco-heading">{{ $hp.ecosystem.heading }}</h2>
+      <p class="lead">{{ $hp.ecosystem.lead }}</p>
+    </div>
+    <ul class="card-grid card-grid-3" role="list">
+      {{ range $projects }}
+      <li class="card project-card reveal" data-category="{{ .category }}">
+        <div class="card-top">
+          {{ partial "icon.html" .id }}
+          <span class="chip chip-{{ .category }}">{{ .category_label }}</span>
+        </div>
+        <h3>{{ .title }}</h3>
+        <p class="card-en">{{ .title_en }}</p>
+        <p>{{ .description }}</p>
+        <p class="card-audience">เหมาะกับ: {{ .audience }}</p>
+        <a class="card-link" href="{{ .url }}">{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ .title }}</span></a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ Apps ═══ -->
+<section id="apps" class="section" aria-labelledby="apps-heading">
+  <div class="container split">
+    <div class="split-copy">
+      <p class="eyebrow">{{ $hp.apps.eyebrow }}</p>
+      <h2 id="apps-heading">{{ $hp.apps.heading }}</h2>
+      <p class="lead">{{ $hp.apps.lead }}</p>
+      <ul class="check-list" role="list">
+        {{ range $hp.apps.points }}
+        <li>{{ partial "icon.html" "check" }}<span>{{ . }}</span></li>
+        {{ end }}
+      </ul>
+      <a class="btn btn-primary" href="{{ $hp.apps.cta.url }}">{{ $hp.apps.cta.label }}{{ partial "icon.html" "arrow" }}</a>
+      <p class="fine-print">{{ $hp.apps.disclaimer }}</p>
+    </div>
+    <div class="split-visual" aria-hidden="true">
+      <div class="phone-mock">
+        <div class="phone-screen">
+          <span class="phone-dot"></span>
+          <div class="phone-line phone-line-lg"></div>
+          <div class="phone-line"></div>
+          <div class="phone-line phone-line-sm"></div>
+          <div class="phone-tiles">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Knowledge Hubs ═══ -->
+<section id="knowledge" class="section section-alt" aria-labelledby="know-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{{ $hp.knowledge.eyebrow }}</p>
+      <h2 id="know-heading">{{ $hp.knowledge.heading }}</h2>
+      <p class="lead">{{ $hp.knowledge.lead }}</p>
+    </div>
+    <ul class="card-grid card-grid-3" role="list">
+      {{ range $projects }}{{ if eq .category "knowledge" }}
+      <li class="card card-compact reveal">
+        {{ partial "icon.html" .id }}
+        <h3>{{ .title }}</h3>
+        <p>{{ .description }}</p>
+        <a class="card-link" href="{{ .url }}">{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ .title }}</span></a>
+      </li>
+      {{ end }}{{ end }}
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ Content Channels ═══ -->
+<section id="content" class="section" aria-labelledby="content-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{{ $hp.content.eyebrow }}</p>
+      <h2 id="content-heading">{{ $hp.content.heading }}</h2>
+      <p class="lead">{{ $hp.content.lead }}</p>
+    </div>
+    <ul class="card-grid card-grid-3" role="list">
+      {{ range $projects }}{{ if eq .category "content" }}
+      <li class="card card-channel reveal">
+        {{ partial "icon.html" .id }}
+        <h3>{{ .title }}</h3>
+        <p>{{ .description }}</p>
+        <a class="btn btn-outline" href="{{ .url }}">{{ .cta }}</a>
+      </li>
+      {{ end }}{{ end }}
+      <li class="card card-channel reveal">
+        {{ partial "icon.html" "hub" }}
+        <h3>อ่านต่อที่ Thamdee Hub</h3>
+        <p>บทความ คู่มือ และสรุปความรู้จากทุกช่องทาง จัดเก็บให้ค้นและอ้างอิงได้ง่าย</p>
+        <a class="btn btn-outline" href="https://hub.thamdee.com">เข้าสู่ Hub</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ Why Thamdee ═══ -->
+<section id="why" class="section section-deep" aria-labelledby="why-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow eyebrow-light">{{ $hp.why.eyebrow }}</p>
+      <h2 id="why-heading">{{ $hp.why.heading }}</h2>
+    </div>
+    <ul class="why-grid" role="list">
+      {{ range $hp.why.items }}
+      <li class="why-item reveal">
+        <h3>{{ .title }}</h3>
+        <p>{{ .description }}</p>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+<!-- ═══ Founder ═══ -->
+<section id="founder" class="section" aria-labelledby="founder-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{{ $hp.founder.eyebrow }}</p>
+      <h2 id="founder-heading">{{ $hp.founder.heading }}</h2>
+    </div>
+    <div class="founder-card reveal">
+      <div class="founder-side">
+        <span class="founder-avatar" aria-hidden="true">{{ $hp.founder.initials }}</span>
+        <p class="founder-name">{{ $hp.founder.name }}</p>
+        <p class="founder-role">{{ $hp.founder.role_line }}</p>
+        <p class="founder-edu">{{ $hp.founder.education }}</p>
+      </div>
+      <div class="founder-body">
+        <p>{{ $hp.founder.experience_intro }}</p>
+        <ul class="founder-roles" role="list">
+          {{ range $hp.founder.roles }}
+          <li>{{ partial "icon.html" "check" }}<span>{{ . }}</span></li>
+          {{ end }}
+        </ul>
+        <p>{{ $hp.founder.story }}</p>
+        <blockquote class="founder-hope">{{ $hp.founder.hope }}</blockquote>
+        <p class="fine-print">{{ $hp.founder.acknowledgement }}</p>
+        <p class="fine-print">{{ $hp.founder.apology }}</p>
+        <a class="btn btn-outline" href="mailto:{{ site.Params.contactEmail }}?subject=ข้อเสนอแนะถึงผู้จัดทำ%20Thamdee">{{ $hp.founder.cta_label }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Follow ═══ -->
+<section id="follow" class="section" aria-labelledby="follow-heading">
+  <div class="container follow-inner">
+    <div>
+      <p class="eyebrow">{{ $hp.follow.eyebrow }}</p>
+      <h2 id="follow-heading">{{ $hp.follow.heading }}</h2>
+      <p class="lead">{{ $hp.follow.lead }}</p>
+    </div>
+    <div class="follow-actions">
+      <a class="btn btn-primary" href="{{ site.Params.youtube }}">ติดตามบน YouTube</a>
+      <a class="btn btn-outline" href="{{ site.Params.tiktok }}">ติดตามบน TikTok</a>
+      <a class="btn btn-ghost" href="https://hub.thamdee.com">อ่านบทความที่ Hub</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Contact ═══ -->
+<section id="contact" class="section section-alt" aria-labelledby="contact-heading">
+  <div class="container contact-inner">
+    <div class="section-head section-head-left">
+      <p class="eyebrow">{{ $hp.contact.eyebrow }}</p>
+      <h2 id="contact-heading">{{ $hp.contact.heading }}</h2>
+      <p class="lead">{{ $hp.contact.lead }}</p>
+    </div>
+    <div class="contact-card">
+      {{ partial "icon.html" "mail" }}
+      <p class="contact-email"><a href="mailto:{{ site.Params.contactEmail }}">{{ site.Params.contactEmail }}</a></p>
+      <a class="btn btn-primary" href="mailto:{{ site.Params.contactEmail }}?subject=ติดต่อ%20Thamdee">{{ $hp.contact.email_label }}</a>
+      <p class="fine-print">{{ $hp.contact.feedback_note }}</p>
+    </div>
+  </div>
+</section>
+{{ end }}

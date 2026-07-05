@@ -1,0 +1,71 @@
+{{- $isHome := .IsHome -}}
+{{- $pageTitle := cond (eq .Kind "404") "ไม่พบหน้าที่คุณต้องการ" .Title -}}
+{{- $title := cond $isHome site.Title (printf "%s | %s" $pageTitle site.Params.siteName) -}}
+{{- $desc := cond (ne .Description "") .Description site.Params.description -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta name="theme-color" content="#17614f">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.Params.siteName }}">
+<meta property="og:title" content="{{ cond $isHome "Thamdee Ecosystem — เรียนรู้ เทคโนโลยี และสิ่งดี ๆ ในที่เดียว" $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ site.Params.ogImage | absURL }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+<!-- Fonts: Prompt (display, ไม่มีหัว/ทันสมัย) + IBM Plex Sans Thai Looped (body, มีหัว/อ่านง่ายทุกวัย) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@400;500;600&family=Prompt:wght@500;600;700&display=swap" rel="stylesheet">
+
+{{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
+{{- if $isHome }}
+{{- $items := slice -}}
+{{- range $i, $p := hugo.Data.projects -}}
+  {{- $items = $items | append (dict "@type" "ListItem" "position" (add $i 1) "name" $p.title "url" $p.url) -}}
+{{- end -}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@graph" (slice
+    (dict
+      "@type" "Organization"
+      "@id" "https://thamdee.com/#org"
+      "name" "Thamdee"
+      "alternateName" "Thamdee Ecosystem"
+      "url" "https://thamdee.com/"
+      "logo" "https://thamdee.com/images/apple-touch-icon.png"
+      "description" site.Params.description
+      "email" site.Params.contactEmail
+      "founder" (dict "@type" "Person" "name" hugo.Data.homepage.founder.name "jobTitle" hugo.Data.homepage.founder.role_line)
+      "sameAs" (slice site.Params.youtube site.Params.tiktok)
+    )
+    (dict
+      "@type" "WebSite"
+      "@id" "https://thamdee.com/#website"
+      "url" "https://thamdee.com/"
+      "name" "Thamdee Ecosystem"
+      "inLanguage" "th-TH"
+      "publisher" (dict "@id" "https://thamdee.com/#org")
+    )
+    (dict
+      "@type" "ItemList"
+      "name" "โปรเจกต์ในเครือ Thamdee Ecosystem"
+      "itemListElement" $items
+    )
+  )
+-}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{- end }}
