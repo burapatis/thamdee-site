@@ -32,41 +32,38 @@ disableKinds = ["taxonomy", "term"]
 
 [menus]
   [[menus.main]]
-    name = "หน้าแรก"
-    url = "/"
-    weight = 10
-  [[menus.main]]
+    identifier = "ecosystem"
     name = "Ecosystem"
     url = "/#ecosystem"
     weight = 20
   [[menus.main]]
-    name = "แอป"
+    parent = "ecosystem"
+    name = "แอปมือถือ"
     url = "/#apps"
-    weight = 30
+    weight = 21
   [[menus.main]]
+    parent = "ecosystem"
     name = "ศูนย์ความรู้"
     url = "/#knowledge"
-    weight = 40
+    weight = 22
   [[menus.main]]
-    name = "คอนเทนต์"
+    parent = "ecosystem"
+    name = "คอนเทนต์ & สื่อ"
     url = "/#content"
-    weight = 50
+    weight = 23
   [[menus.main]]
-    name = "เกี่ยวกับ"
-    url = "/#about"
-    weight = 60
+    parent = "ecosystem"
+    name = "Thamdee Hub"
+    url = "https://hub.thamdee.com"
+    weight = 24
   [[menus.main]]
     name = "ข่าวสาร"
     url = "/news/"
-    weight = 65
+    weight = 30
   [[menus.main]]
-    name = "ค้นหา"
-    url = "/search/"
-    weight = 67
-  [[menus.main]]
-    name = "ติดต่อ"
-    url = "/#contact"
-    weight = 70
+    name = "เกี่ยวกับ"
+    url = "/#about"
+    weight = 40
 
 [markup.goldmark.renderer]
   unsafe = false

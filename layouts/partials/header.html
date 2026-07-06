@@ -12,11 +12,35 @@
     </button>
 
     <nav id="site-nav" class="site-nav" aria-label="{{ $hp.ui.menu }}">
-      <ul>
-        {{ range site.Menus.main }}
-        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-        {{ end }}
-        <li class="nav-cta"><a class="btn btn-primary btn-sm" href="/#ecosystem">{{ $hp.ui.nav_cta }}</a></li>
+      <ul class="site-nav-list">
+        {{- range site.Menus.main -}}
+          {{- if not .Parent -}}
+          <li class="nav-item{{ if .HasChildren }} has-dropdown{{ end }}">
+            {{- if .HasChildren -}}
+            <button type="button" class="nav-link nav-dropdown-toggle" aria-expanded="false" aria-controls="nav-menu-{{ .Identifier }}">
+              {{ .Name }}<span class="nav-chevron" aria-hidden="true"></span>
+            </button>
+            <ul id="nav-menu-{{ .Identifier }}" class="nav-dropdown" role="list">
+              {{- range .Children -}}
+              <li>
+                <a class="nav-dropdown-link" href="{{ if hasPrefix .URL "http" }}{{ .URL }}{{ else }}{{ .URL | safeURL }}{{ end }}"{{ if hasPrefix .URL "http" }} {{ partial "external-target.html" }}{{ end }}>{{ .Name }}{{ if hasPrefix .URL "http" }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span>{{ end }}</a>
+              </li>
+              {{- end -}}
+            </ul>
+            {{- else -}}
+            <a class="nav-link" href="{{ .URL | safeURL }}">{{ .Name }}</a>
+            {{- end -}}
+          </li>
+          {{- end -}}
+        {{- end -}}
+        <li class="nav-item nav-search">
+          <a class="nav-link nav-search-link" href="/search/" aria-label="{{ $hp.search.title }}">
+            {{ partial "icon.html" "search" }}
+          </a>
+        </li>
+        <li class="nav-item nav-cta">
+          <a class="btn btn-primary btn-sm" href="{{ $hp.ui.nav_cta_url }}" {{ partial "external-target.html" }}>{{ $hp.ui.nav_cta }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a>
+        </li>
       </ul>
     </nav>
   </div>

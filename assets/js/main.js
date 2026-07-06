@@ -26,6 +26,36 @@
     });
   }
 
+  /* Ecosystem dropdown (mobile accordion + keyboard) */
+  var dropdownToggles = document.querySelectorAll(".nav-dropdown-toggle");
+  function closeDropdowns(except) {
+    dropdownToggles.forEach(function (btn) {
+      if (btn === except) return;
+      var item = btn.closest(".nav-item.has-dropdown");
+      if (item) {
+        item.classList.remove("is-open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+  dropdownToggles.forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var item = btn.closest(".nav-item.has-dropdown");
+      if (!item) return;
+      var open = !item.classList.contains("is-open");
+      closeDropdowns(open ? btn : null);
+      item.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".nav-item.has-dropdown")) closeDropdowns();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeDropdowns();
+  });
+
   /* Reveal on scroll — ทำงานเฉพาะเมื่อผู้ใช้ไม่ได้ตั้งค่า reduced motion */
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var items = document.querySelectorAll(".reveal");
