@@ -442,7 +442,11 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
   border-radius: var(--radius-card) var(--radius-card) 0 0;
   overflow: hidden;
   aspect-ratio: 16 / 9;
-  background: var(--alt) center / cover no-repeat;
+  background-color: var(--alt);
+  background-image: var(--cover);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .news-card:has(.news-card-cover) .news-card-meta,
 .news-card:has(.news-card-cover) .news-card-title,
