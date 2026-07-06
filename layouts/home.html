@@ -1,6 +1,8 @@
 {{ define "main" }}
-{{- $hp := hugo.Data.homepage -}}
+{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
 {{- $projects := hugo.Data.projects -}}
+{{- $isEn := eq site.Language.Lang "en" -}}
+{{- $catLabelsEn := dict "app" "Application" "content" "Video & short content" "knowledge" "Knowledge hub" -}}
 
 <!-- ═══ Hero ═══ -->
 <section class="hero" aria-labelledby="hero-heading">
@@ -41,7 +43,7 @@
   </div>
 </section>
 
-<!-- ═══ Ecosystem: ทั้ง 7 โปรเจกต์ ═══ -->
+<!-- ═══ Ecosystem ═══ -->
 <section id="ecosystem" class="section section-alt" aria-labelledby="eco-heading">
   <div class="container">
     <div class="section-head">
@@ -51,16 +53,27 @@
     </div>
     <ul class="card-grid card-grid-3" role="list">
       {{ range $projects }}
-      <li class="card project-card reveal" data-category="{{ .category }}">
+      {{- $projTitle := cond $isEn .title_en .title -}}
+      {{- $projSub := cond $isEn .title .title_en -}}
+      {{- $catLabel := cond $isEn (index $catLabelsEn .category | default .category_label) .category_label -}}
+      <li class="card project-card reveal{{ if eq .status "coming-soon" }} project-card--soon{{ end }}" data-category="{{ .category }}">
         <div class="card-top">
           {{ partial "icon.html" .id }}
-          <span class="chip chip-{{ .category }}">{{ .category_label }}</span>
+          <div class="card-chips">
+            {{ if eq .status "featured" }}<span class="chip chip-featured">{{ $hp.ui.badge_featured }}</span>{{ end }}
+            {{ if eq .status "coming-soon" }}<span class="chip chip-soon">{{ $hp.ui.badge_soon }}</span>{{ end }}
+            <span class="chip chip-{{ .category }}">{{ $catLabel }}</span>
+          </div>
         </div>
-        <h3>{{ .title }}</h3>
-        <p class="card-en">{{ .title_en }}</p>
+        <h3>{{ $projTitle }}</h3>
+        <p class="card-en">{{ $projSub }}</p>
         <p>{{ .description }}</p>
-        <p class="card-audience">เหมาะกับ: {{ .audience }}</p>
-        <a class="card-link" href="{{ .url }}">{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ .title }}</span></a>
+        <p class="card-audience">{{ $hp.ui.audience_prefix }} {{ .audience }}</p>
+        {{ if eq .status "coming-soon" }}
+        <span class="card-status" aria-label="{{ $projTitle }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
+        {{ else }}
+        <a class="card-link" href="{{ .url }}">{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ $projTitle }}</span></a>
+        {{ end }}
       </li>
       {{ end }}
     </ul>
@@ -108,11 +121,22 @@
     </div>
     <ul class="card-grid card-grid-3" role="list">
       {{ range $projects }}{{ if eq .category "knowledge" }}
-      <li class="card card-compact reveal">
-        {{ partial "icon.html" .id }}
-        <h3>{{ .title }}</h3>
+      {{- $projTitle := cond $isEn .title_en .title -}}
+      <li class="card card-compact reveal{{ if eq .status "coming-soon" }} project-card--soon{{ end }}">
+        <div class="card-top">
+          {{ partial "icon.html" .id }}
+          <div class="card-chips">
+            {{ if eq .status "featured" }}<span class="chip chip-featured">{{ $hp.ui.badge_featured }}</span>{{ end }}
+            {{ if eq .status "coming-soon" }}<span class="chip chip-soon">{{ $hp.ui.badge_soon }}</span>{{ end }}
+          </div>
+        </div>
+        <h3>{{ $projTitle }}</h3>
         <p>{{ .description }}</p>
-        <a class="card-link" href="{{ .url }}">{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ .title }}</span></a>
+        {{ if eq .status "coming-soon" }}
+        <span class="card-status" aria-label="{{ $projTitle }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
+        {{ else }}
+        <a class="card-link" href="{{ .url }}">{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ $projTitle }}</span></a>
+        {{ end }}
       </li>
       {{ end }}{{ end }}
     </ul>
@@ -129,18 +153,29 @@
     </div>
     <ul class="card-grid card-grid-3" role="list">
       {{ range $projects }}{{ if eq .category "content" }}
-      <li class="card card-channel reveal">
-        {{ partial "icon.html" .id }}
-        <h3>{{ .title }}</h3>
+      {{- $projTitle := cond $isEn .title_en .title -}}
+      <li class="card card-channel reveal{{ if eq .status "coming-soon" }} project-card--soon{{ end }}">
+        <div class="card-top">
+          {{ partial "icon.html" .id }}
+          <div class="card-chips">
+            {{ if eq .status "featured" }}<span class="chip chip-featured">{{ $hp.ui.badge_featured }}</span>{{ end }}
+            {{ if eq .status "coming-soon" }}<span class="chip chip-soon">{{ $hp.ui.badge_soon }}</span>{{ end }}
+          </div>
+        </div>
+        <h3>{{ $projTitle }}</h3>
         <p>{{ .description }}</p>
+        {{ if eq .status "coming-soon" }}
+        <span class="card-status" aria-label="{{ $projTitle }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
+        {{ else }}
         <a class="btn btn-outline" href="{{ .url }}">{{ .cta }}</a>
+        {{ end }}
       </li>
       {{ end }}{{ end }}
       <li class="card card-channel reveal">
         {{ partial "icon.html" "hub" }}
-        <h3>อ่านต่อที่ Thamdee Hub</h3>
-        <p>บทความ คู่มือ และสรุปความรู้จากทุกช่องทาง จัดเก็บให้ค้นและอ้างอิงได้ง่าย</p>
-        <a class="btn btn-outline" href="https://hub.thamdee.com">เข้าสู่ Hub</a>
+        <h3>{{ $hp.hub_card.title }}</h3>
+        <p>{{ $hp.hub_card.description }}</p>
+        <a class="btn btn-outline" href="https://hub.thamdee.com">{{ $hp.hub_card.cta }}</a>
       </li>
     </ul>
   </div>
@@ -189,11 +224,43 @@
         <blockquote class="founder-hope">{{ $hp.founder.hope }}</blockquote>
         <p class="fine-print">{{ $hp.founder.acknowledgement }}</p>
         <p class="fine-print">{{ $hp.founder.apology }}</p>
-        <a class="btn btn-outline" href="mailto:{{ site.Params.contactEmail }}?subject=ข้อเสนอแนะถึงผู้จัดทำ%20Thamdee">{{ $hp.founder.cta_label }}</a>
+        <a class="btn btn-outline" href="mailto:{{ site.Params.contactEmail }}?subject={{ $hp.ui.mailto_founder }}">{{ $hp.founder.cta_label }}</a>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ═══ News (แสดงเมื่อมีบทความ — ดึงจากไซต์ภาษาไทย) ═══ -->
+{{- $newsSite := site -}}
+{{- range hugo.Sites }}{{ if eq .Language.Lang "th" }}{{ $newsSite = . }}{{ end }}{{ end -}}
+{{- $latestNews := first 3 ((where $newsSite.RegularPages "Section" "news").ByDate.Reverse) -}}
+{{- if gt (len $latestNews) 0 }}
+<section id="news" class="section section-alt" aria-labelledby="news-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">{{ $hp.news.eyebrow }}</p>
+      <h2 id="news-heading">{{ $hp.news.heading }}</h2>
+      <p class="lead">{{ $hp.news.lead }}</p>
+    </div>
+    <ul class="card-grid card-grid-3 news-grid" role="list">
+      {{ range $latestNews }}
+      <li class="card news-card reveal">
+        <div class="news-card-meta">
+          {{ partial "news-date.html" .Date }}
+          {{ partial "news-category.html" .Params.category }}
+        </div>
+        <h3 class="news-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Params.summary }}</p>
+        <a class="card-link" href="{{ .RelPermalink }}">{{ $hp.ui.read_more }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ .Title }}</span></a>
+      </li>
+      {{ end }}
+    </ul>
+    <p class="news-section-cta">
+      <a class="btn btn-outline" href="{{ $hp.news.cta.url }}">{{ $hp.news.cta.label }}{{ partial "icon.html" "arrow" }}</a>
+    </p>
+  </div>
+</section>
+{{- end }}
 
 <!-- ═══ Follow ═══ -->
 <section id="follow" class="section" aria-labelledby="follow-heading">
@@ -204,9 +271,9 @@
       <p class="lead">{{ $hp.follow.lead }}</p>
     </div>
     <div class="follow-actions">
-      <a class="btn btn-primary" href="{{ site.Params.youtube }}">ติดตามบน YouTube</a>
-      <a class="btn btn-outline" href="{{ site.Params.tiktok }}">ติดตามบน TikTok</a>
-      <a class="btn btn-ghost" href="https://hub.thamdee.com">อ่านบทความที่ Hub</a>
+      <a class="btn btn-primary" href="{{ site.Params.youtube }}">{{ $hp.follow.youtube }}</a>
+      <a class="btn btn-outline" href="{{ site.Params.tiktok }}">{{ $hp.follow.tiktok }}</a>
+      <a class="btn btn-ghost" href="https://hub.thamdee.com">{{ $hp.follow.hub }}</a>
     </div>
   </div>
 </section>
@@ -222,7 +289,7 @@
     <div class="contact-card">
       {{ partial "icon.html" "mail" }}
       <p class="contact-email"><a href="mailto:{{ site.Params.contactEmail }}">{{ site.Params.contactEmail }}</a></p>
-      <a class="btn btn-primary" href="mailto:{{ site.Params.contactEmail }}?subject=ติดต่อ%20Thamdee">{{ $hp.contact.email_label }}</a>
+      <a class="btn btn-primary" href="mailto:{{ site.Params.contactEmail }}?subject={{ $hp.ui.mailto_contact }}">{{ $hp.contact.email_label }}</a>
       <p class="fine-print">{{ $hp.contact.feedback_note }}</p>
     </div>
   </div>

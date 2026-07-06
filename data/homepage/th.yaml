@@ -70,6 +70,17 @@ follow:
   eyebrow: "ติดตาม Thamdee"
   heading: "ไม่พลาดสิ่งดี ๆ ที่กำลังจะมา"
   lead: "ติดตามช่องทางของเราเพื่อรับความรู้ใหม่ วิดีโอใหม่ และข่าวการเปิดตัวแอปหรือศูนย์ความรู้ใหม่ก่อนใคร"
+  youtube: "ติดตามบน YouTube"
+  tiktok: "ติดตามบน TikTok"
+  hub: "อ่านบทความที่ Hub"
+
+news:
+  eyebrow: "ข่าวสาร"
+  heading: "ข่าวสารล่าสุด"
+  lead: "ประกาศการเปิดตัวแอป ศูนย์ความรู้ใหม่ และอัปเดตสำคัญจาก Thamdee Ecosystem"
+  cta:
+    label: "ดูข่าวทั้งหมด"
+    url: "/news/"
 
 contact:
   eyebrow: "Contact & Feedback"
@@ -100,3 +111,32 @@ founder:
 footer:
   about: "Thamdee Ecosystem คือระบบนิเวศของการเรียนรู้ เทคโนโลยี และคอนเทนต์ ที่มุ่งสร้างประโยชน์จริงต่อการศึกษา ชีวิต และสังคม"
   ai_note: "เนื้อหาบางส่วนจัดทำโดยมี AI ช่วยสนับสนุน และผ่านการตรวจทานโดยทีมงานก่อนเผยแพร่"
+
+hub_card:
+  title: "อ่านต่อที่ Thamdee Hub"
+  description: "บทความ คู่มือ และสรุปความรู้จากทุกช่องทาง จัดเก็บให้ค้นและอ้างอิงได้ง่าย"
+  cta: "เข้าสู่ Hub"
+
+ui:
+  skip_link: "ข้ามไปยังเนื้อหาหลัก"
+  back_to_top: "กลับขึ้นด้านบน"
+  menu: "เมนู"
+  nav_cta: "สำรวจ Ecosystem"
+  lang_label: "เลือกภาษา"
+  audience_prefix: "เหมาะกับ:"
+  read_more: "อ่านต่อ"
+  developing: "กำลังพัฒนา"
+  badge_featured: "แนะนำ"
+  badge_soon: "เร็ว ๆ นี้"
+  back_home: "กลับหน้าแรก"
+  mailto_contact: "ติดต่อ%20Thamdee"
+  mailto_founder: "ข้อเสนอแนะถึงผู้จัดทำ%20Thamdee"
+
+search:
+  title: "ค้นหา"
+  description: "ค้นหาเนื้อหาบน thamdee.com — หน้าแรก ข่าวสาร และเอกสารสำคัญ"
+  lead: "พิมพ์คำค้นหาเพื่อหาหน้าและบทความที่ต้องการ"
+  unavailable: "ดัชนีค้นหายังไม่พร้อมในสภาพแวดล้อมนี้ ลองใหม่หลัง deploy หรือรัน npx pagefind --site public หลัง build"
+  back_home: "กลับหน้าแรก"
+
+legal_note: "This page is written in Thai. Contact us at burapatis@gmail.com if you need help in English."

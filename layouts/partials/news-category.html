@@ -1,0 +1,4 @@
+{{- $cat := . -}}
+{{- $labels := dict "app" "แอป" "knowledge" "ศูนย์ความรู้" "content" "คอนเทนต์" "announcement" "ประกาศ" -}}
+{{- $classes := dict "app" "chip-app" "knowledge" "chip-knowledge" "content" "chip-content" "announcement" "chip-announcement" -}}
+<span class="chip {{ index $classes $cat | default "chip-announcement" }}">{{ index $labels $cat | default "ประกาศ" }}</span>

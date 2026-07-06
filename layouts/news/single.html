@@ -1,0 +1,22 @@
+{{ define "main" }}
+<article class="section news-article" itemscope itemtype="https://schema.org/Article">
+  <div class="container container-narrow">
+    <p class="eyebrow">ข่าวสาร Thamdee</p>
+    <div class="news-article-meta">
+      {{ partial "news-date.html" .Date }}
+      {{ partial "news-category.html" .Params.category }}
+    </div>
+    <h1 itemprop="headline">{{ .Title }}</h1>
+    {{ with .Params.summary }}<p class="lead news-lead" itemprop="description">{{ . }}</p>{{ end }}
+    {{ with .Params.cover }}
+    <figure class="news-cover">
+      <img src="{{ . }}" alt="" width="760" height="428" loading="eager" decoding="async" itemprop="image">
+    </figure>
+    {{ end }}
+    <div class="prose" itemprop="articleBody">
+      {{ .Content }}
+    </div>
+    <p class="news-back"><a class="card-link" href="/news/">← กลับหน้าข่าวสารทั้งหมด</a></p>
+  </div>
+</article>
+{{ end }}

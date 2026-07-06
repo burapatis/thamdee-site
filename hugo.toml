@@ -1,58 +1,125 @@
 baseURL = "https://thamdee.com/"
-locale = "th-TH"
 defaultContentLanguage = "th"
-title = "Thamdee Ecosystem — ระบบนิเวศแห่งการเรียนรู้ เทคโนโลยี และสิ่งดี ๆ"
+defaultContentLanguageInSubdir = false
 enableRobotsTXT = false # ใช้ static/robots.txt ของเราเอง
 timeZone = "Asia/Bangkok"
 
-# ปิดส่วนที่ยังไม่ใช้ เพื่อความเร็วและความสะอาดของ output
-disableKinds = ["taxonomy", "term", "rss", "section"]
+# ปิด taxonomy/term ที่ยังไม่ใช้ — section และ rss เปิดเฉพาะ news ผ่าน [outputs]
+disableKinds = ["taxonomy", "term"]
+
+[outputs]
+  home = ["HTML"]
+  page = ["HTML"]
+  section = ["HTML"]
 
 [pagination]
   pagerSize = 12
 
+# ค่าที่ใช้ร่วมกันทุกภาษา
 [params]
   siteName = "Thamdee Ecosystem"
   shortName = "Thamdee"
-  description = "Thamdee Ecosystem คือระบบนิเวศของการเรียนรู้ เทคโนโลยี และคอนเทนต์ รวมแอปมือถือ ศูนย์ความรู้สำหรับครู ผู้บริหาร กฎหมายการศึกษา และคอนเทนต์ AI ไว้ในที่เดียว"
   tagline_th = "ทำสิ่งดี ให้เกิดประโยชน์จริง"
   tagline_en = "Good things, made truly useful."
-  contactEmail = "contact@thamdee.com"
+  contactEmail = "burapatis@gmail.com"
   ogImage = "/images/og-cover.png"
-  # โซเชียลหลักของแบรนด์ (ใช้ใน footer และ schema sameAs)
   youtube = "https://youtube.thamdee.com"
   tiktok = "https://tiktok.thamdee.com"
-  # ปีเริ่มต้นสำหรับ copyright
   foundingYear = 2024
+  cloudflareAnalyticsToken = ""
 
-[menus]
-  [[menus.main]]
+[languages.th]
+  locale = "th-TH"
+  label = "ไทย"
+  weight = 1
+  contentDir = "content"
+  title = "Thamdee Ecosystem — ระบบนิเวศแห่งการเรียนรู้ เทคโนโลยี และสิ่งดี ๆ"
+  [languages.th.params]
+    description = "Thamdee Ecosystem คือระบบนิเวศของการเรียนรู้ เทคโนโลยี และคอนเทนต์ รวมแอปมือถือ ศูนย์ความรู้สำหรับครู ผู้บริหาร กฎหมายการศึกษา และคอนเทนต์ AI ไว้ในที่เดียว"
+    ogHomeTitle = "Thamdee Ecosystem — เรียนรู้ เทคโนโลยี และสิ่งดี ๆ ในที่เดียว"
+
+  [[languages.th.menus.main]]
     name = "หน้าแรก"
     url = "/"
     weight = 10
-  [[menus.main]]
+  [[languages.th.menus.main]]
     name = "Ecosystem"
     url = "/#ecosystem"
     weight = 20
-  [[menus.main]]
+  [[languages.th.menus.main]]
     name = "แอป"
     url = "/#apps"
     weight = 30
-  [[menus.main]]
+  [[languages.th.menus.main]]
     name = "ศูนย์ความรู้"
     url = "/#knowledge"
     weight = 40
-  [[menus.main]]
+  [[languages.th.menus.main]]
     name = "คอนเทนต์"
     url = "/#content"
     weight = 50
-  [[menus.main]]
+  [[languages.th.menus.main]]
     name = "เกี่ยวกับ"
     url = "/#about"
     weight = 60
-  [[menus.main]]
+  [[languages.th.menus.main]]
+    name = "ข่าวสาร"
+    url = "/news/"
+    weight = 65
+  [[languages.th.menus.main]]
+    name = "ค้นหา"
+    url = "/search/"
+    weight = 67
+  [[languages.th.menus.main]]
     name = "ติดต่อ"
     url = "/#contact"
+    weight = 70
+
+[languages.en]
+  locale = "en-US"
+  label = "English"
+  weight = 2
+  contentDir = "content/en"
+  title = "Thamdee Ecosystem — Learning, Technology, and Good Things"
+  [languages.en.params]
+    description = "Thamdee Ecosystem brings together mobile apps, knowledge hubs for educators, and trusted AI and technology content — all in one place."
+    ogHomeTitle = "Thamdee Ecosystem — Learning, technology, and good things in one place"
+
+  [[languages.en.menus.main]]
+    name = "Home"
+    url = "/en/"
+    weight = 10
+  [[languages.en.menus.main]]
+    name = "Ecosystem"
+    url = "/en/#ecosystem"
+    weight = 20
+  [[languages.en.menus.main]]
+    name = "Apps"
+    url = "/en/#apps"
+    weight = 30
+  [[languages.en.menus.main]]
+    name = "Knowledge"
+    url = "/en/#knowledge"
+    weight = 40
+  [[languages.en.menus.main]]
+    name = "Content"
+    url = "/en/#content"
+    weight = 50
+  [[languages.en.menus.main]]
+    name = "About"
+    url = "/en/#about"
+    weight = 60
+  [[languages.en.menus.main]]
+    name = "News"
+    url = "/news/"
+    weight = 65
+  [[languages.en.menus.main]]
+    name = "Search"
+    url = "/en/search/"
+    weight = 67
+  [[languages.en.menus.main]]
+    name = "Contact"
+    url = "/en/#contact"
     weight = 70
 
 [markup.goldmark.renderer]

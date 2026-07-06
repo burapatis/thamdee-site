@@ -45,4 +45,30 @@
   } else {
     items.forEach(function (el) { el.classList.add("in"); });
   }
+
+  /* ปุ่มกลับขึ้นด้านบน — แสดงหลัง scroll เกิน 2 จอ */
+  var backToTop = document.getElementById("back-to-top");
+  if (backToTop) {
+    var scrollThreshold = window.innerHeight * 2;
+    var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function toggleBackToTop() {
+      if (window.scrollY > scrollThreshold) {
+        backToTop.hidden = false;
+      } else {
+        backToTop.hidden = true;
+      }
+    }
+
+    backToTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+    });
+
+    window.addEventListener("scroll", toggleBackToTop, { passive: true });
+    window.addEventListener("resize", function () {
+      scrollThreshold = window.innerHeight * 2;
+      toggleBackToTop();
+    }, { passive: true });
+    toggleBackToTop();
+  }
 })();

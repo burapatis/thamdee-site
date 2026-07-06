@@ -1,13 +1,15 @@
 {{ define "main" }}
+{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
 <article class="section legal-page">
   <div class="container container-narrow">
     <p class="eyebrow">Thamdee Ecosystem</p>
     <h1>{{ .Title }}</h1>
-    {{ with .Params.updated }}<p class="legal-updated">อัปเดตล่าสุด: {{ . }}</p>{{ end }}
+    {{ with .Params.updated }}<p class="legal-updated">{{ if eq site.Language.Lang "en" }}Last updated:{{ else }}อัปเดตล่าสุด:{{ end }} {{ . }}</p>{{ end }}
+    <p class="legal-lang-note" lang="en">{{ $hp.legal_note }}</p>
     <div class="prose">
       {{ .Content }}
     </div>
-    <p><a class="card-link" href="/">← กลับหน้าแรก</a></p>
+    <p><a class="card-link" href="{{ "/" | relLangURL }}">← {{ $hp.ui.back_home }}</a></p>
   </div>
 </article>
 {{ end }}

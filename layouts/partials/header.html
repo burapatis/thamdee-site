@@ -1,21 +1,23 @@
-<header class="site-header">
+{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
+<header class="site-header" data-pagefind-ignore>
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label="Thamdee — กลับหน้าแรก">
+    <a class="brand" href="{{ "/" | relLangURL }}" aria-label="Thamdee — {{ $hp.ui.back_home }}">
       {{ partial "logo.html" . }}
       <span class="brand-text">Thamdee<span class="brand-dot">.</span></span>
     </a>
 
     <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
       <span class="nav-toggle-bar" aria-hidden="true"></span>
-      <span class="nav-toggle-label">เมนู</span>
+      <span class="nav-toggle-label">{{ $hp.ui.menu }}</span>
     </button>
 
-    <nav id="site-nav" class="site-nav" aria-label="เมนูหลัก">
+    <nav id="site-nav" class="site-nav" aria-label="{{ $hp.ui.menu }}">
       <ul>
         {{ range site.Menus.main }}
         <li><a href="{{ .URL }}">{{ .Name }}</a></li>
         {{ end }}
-        <li class="nav-cta"><a class="btn btn-primary btn-sm" href="#ecosystem">สำรวจ Ecosystem</a></li>
+        <li class="nav-cta"><a class="btn btn-primary btn-sm" href="{{ "/" | relLangURL }}#ecosystem">{{ $hp.ui.nav_cta }}</a></li>
+        <li class="nav-lang">{{ partial "lang-switch.html" . }}</li>
       </ul>
     </nav>
   </div>

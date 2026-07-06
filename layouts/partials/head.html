@@ -1,7 +1,22 @@
 {{- $isHome := .IsHome -}}
-{{- $pageTitle := cond (eq .Kind "404") "ไม่พบหน้าที่คุณต้องการ" .Title -}}
+{{- $isNewsArticle := and (eq .Section "news") (eq .Kind "page") -}}
+{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
+{{- $pageTitle := cond (eq .Kind "404") (cond (eq site.Language.Lang "en") "Page not found" "ไม่พบหน้าที่คุณต้องการ") .Title -}}
 {{- $title := cond $isHome site.Title (printf "%s | %s" $pageTitle site.Params.siteName) -}}
-{{- $desc := cond (ne .Description "") .Description site.Params.description -}}
+{{- $desc := site.Params.description -}}
+{{- if $isHome -}}
+  {{- $desc = site.Params.description -}}
+{{- else if and $isNewsArticle .Params.summary -}}
+  {{- $desc = .Params.summary -}}
+{{- else if ne .Description "" -}}
+  {{- $desc = .Description -}}
+{{- end -}}
+{{- $ogType := cond $isNewsArticle "article" "website" -}}
+{{- $ogImage := site.Params.ogImage | absURL -}}
+{{- if and $isNewsArticle .Params.cover -}}
+  {{- $ogImage = .Params.cover | absURL -}}
+{{- end -}}
+{{- $ogLocale := replace site.Language.Locale "-" "_" -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ $title }}</title>
@@ -10,16 +25,40 @@
 <meta name="theme-color" content="#17614f">
 
 <!-- Open Graph / Social -->
-<meta property="og:type" content="website">
+<meta property="og:type" content="{{ $ogType }}">
 <meta property="og:site_name" content="{{ site.Params.siteName }}">
-<meta property="og:title" content="{{ cond $isHome "Thamdee Ecosystem — เรียนรู้ เทคโนโลยี และสิ่งดี ๆ ในที่เดียว" $title }}">
+<meta property="og:title" content="{{ cond $isHome site.Params.ogHomeTitle $title }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:image" content="{{ site.Params.ogImage | absURL }}">
+<meta property="og:image" content="{{ $ogImage }}">
+{{- if $isNewsArticle }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="th_TH">
+<meta property="og:locale" content="{{ $ogLocale }}">
+{{- range hugo.Sites }}
+{{- if ne .Language.Lang $.Site.Language.Lang }}
+<meta property="og:locale:alternate" content="{{ replace .Language.Locale "-" "_" }}">
+{{- end }}
+{{- end }}
 <meta name="twitter:card" content="summary_large_image">
+
+{{- range hugo.Sites }}
+  {{- if eq .Language.Lang $.Site.Language.Lang }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ $.Permalink }}">
+  {{- else }}
+    {{- with index (where $.Translations "Language.Lang" .Language.Lang) 0 }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- range hugo.Sites }}
+  {{- if eq .Language.Lang "th" }}
+<link rel="alternate" hreflang="x-default" href="{{ .Home.Permalink }}">
+  {{- end }}
+{{- end }}
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
@@ -31,6 +70,12 @@
 
 {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
+{{- with site.Params.cloudflareAnalyticsToken }}
+{{- if hugo.IsProduction }}
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{{ dict "token" . | jsonify }}"></script>
+{{- end }}
+{{- end }}
 
 {{- if $isHome }}
 {{- $items := slice -}}
@@ -49,7 +94,7 @@
       "logo" "https://thamdee.com/images/apple-touch-icon.png"
       "description" site.Params.description
       "email" site.Params.contactEmail
-      "founder" (dict "@type" "Person" "name" hugo.Data.homepage.founder.name "jobTitle" hugo.Data.homepage.founder.role_line)
+      "founder" (dict "@type" "Person" "name" $hp.founder.name "jobTitle" $hp.founder.role_line)
       "sameAs" (slice site.Params.youtube site.Params.tiktok)
     )
     (dict
@@ -57,7 +102,7 @@
       "@id" "https://thamdee.com/#website"
       "url" "https://thamdee.com/"
       "name" "Thamdee Ecosystem"
-      "inLanguage" "th-TH"
+      "inLanguage" site.Language.Locale
       "publisher" (dict "@id" "https://thamdee.com/#org")
     )
     (dict
@@ -66,6 +111,28 @@
       "itemListElement" $items
     )
   )
+-}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{- else if $isNewsArticle }}
+{{- $articleImage := site.Params.ogImage | absURL -}}
+{{- with .Params.cover }}{{ $articleImage = . | absURL }}{{ end -}}
+{{- $schema := dict
+  "@context" "https://schema.org"
+  "@type" "Article"
+  "headline" .Title
+  "description" (.Params.summary | default .Description)
+  "datePublished" (.Date.Format "2006-01-02")
+  "dateModified" (.Lastmod.Format "2006-01-02")
+  "author" (dict "@type" "Organization" "name" "Thamdee" "url" "https://thamdee.com/")
+  "publisher" (dict
+    "@type" "Organization"
+    "name" "Thamdee"
+    "logo" (dict "@type" "ImageObject" "url" "https://thamdee.com/images/apple-touch-icon.png")
+  )
+  "image" $articleImage
+  "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  "inLanguage" site.Language.Locale
+  "isPartOf" (dict "@type" "WebSite" "name" "Thamdee Ecosystem" "url" "https://thamdee.com/")
 -}}
 <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
 {{- end }}

@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
+<section class="section section-alt search-page" aria-labelledby="search-heading">
+  <div class="container container-narrow">
+    <div class="section-head">
+      <p class="eyebrow">Thamdee Ecosystem</p>
+      <h1 id="search-heading">{{ $hp.search.title }}</h1>
+      <p class="lead">{{ $hp.search.lead }}</p>
+    </div>
+    <div id="pagefind-search" class="pagefind-wrap"></div>
+    <p class="search-unavailable fine-print" id="search-unavailable" hidden>{{ $hp.search.unavailable }}</p>
+    <p class="search-back"><a class="card-link" href="{{ "/" | relLangURL }}">← {{ $hp.search.back_home }}</a></p>
+  </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = document.getElementById("pagefind-search");
+  var fallback = document.getElementById("search-unavailable");
+  if (!el) return;
+  if (typeof PagefindUI === "undefined") {
+    if (fallback) fallback.hidden = false;
+    return;
+  }
+  new PagefindUI({
+    element: "#pagefind-search",
+    showImages: false,
+    translations: {
+      placeholder: {{ if eq site.Language.Lang "en" }}"Search this site"{{ else }}"ค้นหาในเว็บไซต์นี้"{{ end }},
+      clear_search: {{ if eq site.Language.Lang "en" }}"Clear"{{ else }}"ล้าง"{{ end }}
+    }
+  });
+})();
+</script>
+{{ end }}

@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="{{ site.Language.Lang }}">
 <head>
   {{ partial "head.html" . }}
 </head>
 <body>
-  <a class="skip-link" href="#main">ข้ามไปยังเนื้อหาหลัก</a>
+  {{- $hp := index hugo.Data.homepage site.Language.Lang -}}
+  <a class="skip-link" href="#main">{{ $hp.ui.skip_link }}</a>
   {{ partial "header.html" . }}
-  <main id="main">
+  <main id="main" data-pagefind-body>
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
+  <button type="button" class="back-to-top" id="back-to-top" hidden aria-label="{{ $hp.ui.back_to_top }}">
+    <span class="back-to-top-icon" aria-hidden="true">{{ partial "icon.html" "arrow-up" }}</span>
+  </button>
   {{ $js := resources.Get "js/main.js" | minify | fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>
+  {{ block "scripts" . }}{{ end }}
 </body>
 </html>

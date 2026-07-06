@@ -1,10 +1,11 @@
 {{ define "main" }}
+{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
 <section class="section notfound">
   <div class="container container-narrow" style="text-align:center">
     <p class="eyebrow">404</p>
-    <h1>ไม่พบหน้าที่คุณต้องการ</h1>
-    <p class="lead">หน้านี้อาจถูกย้ายหรือลบไปแล้ว ลองกลับไปเริ่มต้นที่หน้าแรก หรือสำรวจโปรเจกต์ในเครือ Thamdee</p>
-    <p><a class="btn btn-primary" href="/">กลับหน้าแรก</a></p>
+    <h1>{{ if eq site.Language.Lang "en" }}Page not found{{ else }}ไม่พบหน้าที่คุณต้องการ{{ end }}</h1>
+    <p class="lead">{{ if eq site.Language.Lang "en" }}This page may have been moved or removed. Try the homepage or explore Thamdee projects.{{ else }}หน้านี้อาจถูกย้ายหรือลบไปแล้ว ลองกลับไปเริ่มต้นที่หน้าแรก หรือสำรวจโปรเจกต์ในเครือ Thamdee{{ end }}</p>
+    <p><a class="btn btn-primary" href="{{ "/" | relLangURL }}">{{ $hp.ui.back_home }}</a></p>
   </div>
 </section>
 {{ end }}

@@ -1,0 +1,141 @@
+# Homepage copy — English
+
+hero:
+  eyebrow: "Thamdee Ecosystem"
+  headline: "An ecosystem for learning, technology, and good things"
+  subheadline: "Thamdee brings together mobile apps, knowledge hubs, and trusted content in one place — for teachers, school leaders, learners, and anyone who wants to use technology with confidence and purpose."
+  cta_primary:
+    label: "Explore the Ecosystem"
+    url: "#ecosystem"
+  cta_secondary:
+    label: "See our apps"
+    url: "#apps"
+  note: "Free to use. No sign-up required."
+
+about:
+  eyebrow: "About Thamdee"
+  heading: "Good, made useful"
+  lead: "Thamdee started from a simple belief: good knowledge and technology should be accessible to everyone. We build apps, knowledge sites, and content that work together as one ecosystem — to make learning, work, and daily life meaningfully better."
+  pillars:
+    - title: "Knowledge you can trust"
+      description: "Every piece of content references verifiable principles and standards, written clearly without exaggeration."
+    - title: "Technology for everyone"
+      description: "Apps and websites designed to be easy to use — from digital natives to older adults just getting started."
+    - title: "Responsible AI"
+      description: "AI supports learning with human review for accuracy, and we disclose when AI helped create content."
+    - title: "Benefit to society"
+      description: "Every project begins with the same question: who does this help, and how?"
+
+ecosystem:
+  eyebrow: "Ecosystem"
+  heading: "One brand, eight connected projects"
+  lead: "Every Thamdee project works together — apps for daily life, knowledge hubs for depth, and content to keep you growing. Start wherever fits you best."
+
+apps:
+  eyebrow: "Thamdee Apps"
+  heading: "Apps that help in real daily life"
+  lead: "We build mobile apps for health, reminders, productivity, and learning — all guided by the same principles: easy to use, safe, and genuinely useful."
+  points:
+    - "Large text and buttons for comfortable reading at any age"
+    - "Privacy-first — we only collect what is necessary"
+    - "Ongoing updates with a direct channel for feedback"
+  cta:
+    label: "See all apps at app.thamdee.com"
+    url: "https://app.thamdee.com"
+  disclaimer: "Health and reminder apps are convenience tools — not medical devices and not a substitute for advice from a doctor."
+
+knowledge:
+  eyebrow: "Knowledge Hubs"
+  heading: "Knowledge centres for education professionals"
+  lead: "Specialised resources organised for easy search, reliable reference, and practical use — covering teaching, school leadership, education law, and global citizenship education."
+
+content:
+  eyebrow: "Content Channels"
+  heading: "Learn in the way that suits you"
+  lead: "Prefer depth? Head to YouTube. Want something quick? Try TikTok. Prefer reading and saving for later? Visit Thamdee Hub. Every channel follows the same quality standards."
+
+why:
+  eyebrow: "Why Thamdee"
+  heading: "Why you can trust Thamdee"
+  items:
+    - title: "Transparent sourcing"
+      description: "We state clearly where content comes from and welcome corrections when something is wrong."
+    - title: "User-centred design"
+      description: "Every design decision starts with whether real users — including older adults and beginners — can understand and use it."
+    - title: "Continuous improvement"
+      description: "The ecosystem grows step by step with direction — new apps, knowledge hubs, and content added regularly."
+
+follow:
+  eyebrow: "Follow Thamdee"
+  heading: "Don't miss what's coming next"
+  lead: "Follow our channels for new knowledge, videos, and early news about app launches and knowledge hubs."
+  youtube: "Follow on YouTube"
+  tiktok: "Follow on TikTok"
+  hub: "Read articles on Hub"
+
+news:
+  eyebrow: "News"
+  heading: "Latest news"
+  lead: "Announcements about new apps, knowledge hubs, and important updates from Thamdee Ecosystem"
+  cta:
+    label: "View all news"
+    url: "/news/"
+
+contact:
+  eyebrow: "Contact & Feedback"
+  heading: "We're always listening"
+  lead: "Found an error, have a suggestion, or want to work with Thamdee? Write to us — we read every message."
+  email_label: "Email us"
+  feedback_note: "When reporting a content error, please include the page URL and where you found the issue so we can fix it faster."
+
+founder:
+  eyebrow: "Founder"
+  heading: "Behind Thamdee"
+  name: "Boorapatis Ploysuwan"
+  role_line: "Educator and creator of Thamdee Ecosystem"
+  initials: "BP"
+  education: "Background in education, education of the deaf, and educational administration"
+  experience_intro: "Years of work across education and learning — from the classroom to organisational leadership, including:"
+  roles:
+    - "School teacher"
+    - "University lecturer"
+    - "Higher-education administrator"
+    - "Professional organisation leader"
+  story: "Along this path, the founder saw gaps in basic knowledge and tools that, if made more accessible, could greatly benefit learning and daily life. Thamdee was created as a space to share what has been learned and developed — a growing collection of work for teachers, learners, leaders, and the public to use as appropriate."
+  hope: "We hope this work helps create and sustain good in society, and offers inspiration to many others."
+  acknowledgement: "These works were developed with support from AI tools and data from multiple sources. We thank every reference used in this work."
+  apology: "Content and works presented here may contain errors or incompleteness. We apologise in advance and welcome your feedback to improve accuracy and usefulness."
+  cta_label: "Send feedback to the founder"
+
+footer:
+  about: "Thamdee Ecosystem is a learning, technology, and content ecosystem focused on real benefit for education, life, and society."
+  ai_note: "Some content was prepared with AI assistance and reviewed by the team before publication."
+
+hub_card:
+  title: "Continue reading on Thamdee Hub"
+  description: "Articles, guides, and knowledge summaries from every channel — organised for easy search and reference."
+  cta: "Go to Hub"
+
+ui:
+  skip_link: "Skip to main content"
+  back_to_top: "Back to top"
+  menu: "Menu"
+  nav_cta: "Explore Ecosystem"
+  lang_label: "Language"
+  audience_prefix: "For:"
+  read_more: "Read more"
+  developing: "In development"
+  badge_featured: "Featured"
+  badge_soon: "Coming soon"
+  back_home: "Back to home"
+  mailto_contact: "Contact%20Thamdee"
+  mailto_founder: "Feedback%20to%20Thamdee%20founder"
+
+search:
+  title: "Search"
+  description: "Search thamdee.com — homepage, news, and key documents"
+  lead: "Type to find pages and articles across the site"
+  unavailable: "Search index is not available in this environment. Try again after deploy, or run npx pagefind --site public after building."
+  back_home: "Back to home"
+
+legal_note: "This page is written in Thai. Contact us at burapatis@gmail.com if you need help in English."
