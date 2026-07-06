@@ -236,11 +236,7 @@
     <ul class="card-grid card-grid-3 news-grid" role="list">
       {{ range $latestNews }}
       <li class="card news-card reveal">
-        {{ with .Params.cover }}
-        <div class="news-card-cover">
-          <img src="{{ . }}" alt="" width="400" height="225" loading="lazy" decoding="async">
-        </div>
-        {{ end }}
+        {{ partial "news-card-cover.html" . }}
         <div class="news-card-meta">
           {{ partial "news-date.html" .Date }}
           {{ partial "news-category.html" .Params.category }}

@@ -428,6 +428,7 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
 
 /* ── News ─────────────────────────────────────────────────────── */
 .news-grid .news-card { height: 100%; }
+.news-card:has(.news-card-cover) { padding-top: 0; overflow: hidden; }
 .news-card-meta {
   display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem;
   margin-bottom: 0.85rem; font-size: 0.88rem; color: var(--ink-soft);
@@ -437,10 +438,20 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
 .news-card-title a { color: var(--ink); text-decoration: none; }
 .news-card-title a:hover { color: var(--green-700); }
 .news-card-cover {
-  margin: -1.7rem -1.6rem 1rem; border-radius: var(--radius-card) var(--radius-card) 0 0;
-  overflow: hidden; aspect-ratio: 16 / 9; background: var(--alt);
+  margin: 0 0 1rem;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--alt) center / cover no-repeat;
 }
-.news-card-cover img { width: 100%; height: 100%; object-fit: cover; }
+.news-card:has(.news-card-cover) .news-card-meta,
+.news-card:has(.news-card-cover) .news-card-title,
+.news-card:has(.news-card-cover) > p,
+.news-card:has(.news-card-cover) > .card-link {
+  margin-left: 1.6rem;
+  margin-right: 1.6rem;
+}
+.news-card:has(.news-card-cover) > .card-link { margin-bottom: 0; padding-bottom: 0.25rem; }
 .chip-announcement { background: var(--green-100); color: var(--green-800); }
 .news-section-cta { text-align: center; margin-top: 2rem; }
 .news-back { margin-top: 2.5rem; }
@@ -453,7 +464,7 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
   margin: 0 0 2rem; border-radius: var(--radius-card); overflow: hidden;
   border: 1px solid var(--line); box-shadow: var(--shadow-card);
 }
-.news-cover img { width: 100%; height: auto; display: block; }
+.news-cover img { width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; }
 
 /* ── Reveal on scroll (ปิดอัตโนมัติเมื่อ reduced motion) ───────── */
 @media (prefers-reduced-motion: no-preference) {

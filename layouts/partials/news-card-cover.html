@@ -1,0 +1,4 @@
+{{/* รูปปกข่าว — ใช้ background เพื่อให้ SVG แสดงผลสม่ำเสมอทุกเบราว์เซอร์ */}}
+{{- with .Params.cover -}}
+<div class="news-card-cover" style="background-image: url('{{ . }}')" role="img" aria-label=""></div>
+{{- end -}}
