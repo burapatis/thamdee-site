@@ -129,6 +129,7 @@ ui:
   badge_featured: "แนะนำ"
   badge_soon: "เร็ว ๆ นี้"
   back_home: "กลับหน้าแรก"
+  opens_new_tab: "(เปิดในแท็บใหม่)"
   mailto_contact: "ติดต่อ%20Thamdee"
   mailto_founder: "ข้อเสนอแนะถึงผู้จัดทำ%20Thamdee"
 

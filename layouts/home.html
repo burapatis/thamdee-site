@@ -72,7 +72,7 @@
         {{ if eq .status "coming-soon" }}
         <span class="card-status" aria-label="{{ $projTitle }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
         {{ else }}
-        <a class="card-link" href="{{ .url }}">{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ $projTitle }}</span></a>
+        <a class="card-link" href="{{ .url }}" {{ partial "external-target.html" }}>{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ $projTitle }}{{ $hp.ui.opens_new_tab }}</span></a>
         {{ end }}
       </li>
       {{ end }}
@@ -92,7 +92,7 @@
         <li>{{ partial "icon.html" "check" }}<span>{{ . }}</span></li>
         {{ end }}
       </ul>
-      <a class="btn btn-primary" href="{{ $hp.apps.cta.url }}">{{ $hp.apps.cta.label }}{{ partial "icon.html" "arrow" }}</a>
+      <a class="btn btn-primary" href="{{ $hp.apps.cta.url }}" {{ partial "external-target.html" }}>{{ $hp.apps.cta.label }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a>
       <p class="fine-print">{{ $hp.apps.disclaimer }}</p>
     </div>
     <div class="split-visual" aria-hidden="true">
@@ -135,7 +135,7 @@
         {{ if eq .status "coming-soon" }}
         <span class="card-status" aria-label="{{ $projTitle }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
         {{ else }}
-        <a class="card-link" href="{{ .url }}">{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ $projTitle }}</span></a>
+        <a class="card-link" href="{{ .url }}" {{ partial "external-target.html" }}>{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ $projTitle }}{{ $hp.ui.opens_new_tab }}</span></a>
         {{ end }}
       </li>
       {{ end }}{{ end }}
@@ -167,7 +167,7 @@
         {{ if eq .status "coming-soon" }}
         <span class="card-status" aria-label="{{ $projTitle }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
         {{ else }}
-        <a class="btn btn-outline" href="{{ .url }}">{{ .cta }}</a>
+        <a class="btn btn-outline" href="{{ .url }}" {{ partial "external-target.html" }}>{{ .cta }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a>
         {{ end }}
       </li>
       {{ end }}{{ end }}
@@ -175,7 +175,7 @@
         {{ partial "icon.html" "hub" }}
         <h3>{{ $hp.hub_card.title }}</h3>
         <p>{{ $hp.hub_card.description }}</p>
-        <a class="btn btn-outline" href="https://hub.thamdee.com">{{ $hp.hub_card.cta }}</a>
+        <a class="btn btn-outline" href="https://hub.thamdee.com" {{ partial "external-target.html" }}>{{ $hp.hub_card.cta }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a>
       </li>
     </ul>
   </div>
@@ -271,9 +271,9 @@
       <p class="lead">{{ $hp.follow.lead }}</p>
     </div>
     <div class="follow-actions">
-      <a class="btn btn-primary" href="{{ site.Params.youtube }}">{{ $hp.follow.youtube }}</a>
-      <a class="btn btn-outline" href="{{ site.Params.tiktok }}">{{ $hp.follow.tiktok }}</a>
-      <a class="btn btn-ghost" href="https://hub.thamdee.com">{{ $hp.follow.hub }}</a>
+      <a class="btn btn-primary" href="{{ site.Params.youtube }}" {{ partial "external-target.html" }}>{{ $hp.follow.youtube }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a>
+      <a class="btn btn-outline" href="{{ site.Params.tiktok }}" {{ partial "external-target.html" }}>{{ $hp.follow.tiktok }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a>
+      <a class="btn btn-ghost" href="https://hub.thamdee.com" {{ partial "external-target.html" }}>{{ $hp.follow.hub }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a>
     </div>
   </div>
 </section>

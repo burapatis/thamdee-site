@@ -128,6 +128,7 @@ ui:
   badge_featured: "Featured"
   badge_soon: "Coming soon"
   back_home: "Back to home"
+  opens_new_tab: "(opens in new tab)"
   mailto_contact: "Contact%20Thamdee"
   mailto_founder: "Feedback%20to%20Thamdee%20founder"
 

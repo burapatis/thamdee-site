@@ -15,7 +15,7 @@
         <h2 class="footer-heading">Ecosystem</h2>
         <ul>
           {{ range hugo.Data.projects }}
-          <li><a href="{{ .url }}">{{ if eq $.Site.Language.Lang "en" }}{{ .title_en }}{{ else }}{{ .title }}{{ end }}</a></li>
+          <li><a href="{{ .url }}" {{ partial "external-target.html" }}>{{ if eq $.Site.Language.Lang "en" }}{{ .title_en }}{{ else }}{{ .title }}{{ end }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a></li>
           {{ end }}
         </ul>
       </nav>
@@ -37,9 +37,9 @@
       <div class="footer-col">
         <h2 class="footer-heading">{{ if eq site.Language.Lang "en" }}Follow us{{ else }}ติดตามเรา{{ end }}</h2>
         <ul>
-          <li><a href="{{ site.Params.youtube }}">YouTube</a></li>
-          <li><a href="{{ site.Params.tiktok }}">TikTok</a></li>
-          <li><a href="https://hub.thamdee.com">Thamdee Hub</a></li>
+          <li><a href="{{ site.Params.youtube }}" {{ partial "external-target.html" }}>YouTube<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a></li>
+          <li><a href="{{ site.Params.tiktok }}" {{ partial "external-target.html" }}>TikTok<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a></li>
+          <li><a href="https://hub.thamdee.com" {{ partial "external-target.html" }}>Thamdee Hub<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a></li>
           <li><a href="mailto:{{ site.Params.contactEmail }}">{{ site.Params.contactEmail }}</a></li>
         </ul>
       </div>
