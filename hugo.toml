@@ -25,8 +25,8 @@ disableKinds = ["taxonomy", "term"]
   tagline_en = "Good things, made truly useful."
   contactEmail = "burapatis@gmail.com"
   ogImage = "/images/og-cover.png"
-  youtube = "https://youtube.thamdee.com"
-  tiktok = "https://tiktok.thamdee.com"
+  youtube = "https://media.thamdee.com"
+  tiktok = "https://media.thamdee.com"
   foundingYear = 2024
   cloudflareAnalyticsToken = ""
 

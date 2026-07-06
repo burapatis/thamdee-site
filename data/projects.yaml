@@ -28,7 +28,7 @@
   category: content
   category_label: "วิดีโอความรู้"
   description: "วิดีโอเจาะลึกเรื่อง AI เทคโนโลยี การศึกษา และแนวโน้มโลก อธิบายให้เข้าใจง่ายและนำไปใช้ได้จริง"
-  url: "https://youtube.thamdee.com"
+  url: "https://media.thamdee.com"
   cta: "ดูช่อง YouTube"
   status: live
   audience: "ผู้ที่ชอบเรียนรู้แบบเจาะลึก"
@@ -39,7 +39,7 @@
   category: content
   category_label: "คอนเทนต์สั้น"
   description: "ความรู้แบบสั้น กระชับ เข้าใจได้ในไม่กี่นาที เหมาะกับการเรียนรู้เร็วระหว่างวัน"
-  url: "https://tiktok.thamdee.com"
+  url: "https://media.thamdee.com"
   cta: "ดูช่อง TikTok"
   status: live
   audience: "ผู้เรียนรู้ยุคใหม่"
