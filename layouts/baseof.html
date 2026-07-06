@@ -4,7 +4,7 @@
   {{ partial "head.html" . }}
 </head>
 <body>
-  {{- $hp := index hugo.Data.homepage site.Language.Lang -}}
+  {{- $hp := index hugo.Data.homepage "th" -}}
   <a class="skip-link" href="#main">{{ $hp.ui.skip_link }}</a>
   {{ partial "header.html" . }}
   <main id="main" data-pagefind-body>

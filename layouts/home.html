@@ -1,8 +1,6 @@
 {{ define "main" }}
-{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
+{{- $hp := index hugo.Data.homepage "th" -}}
 {{- $projects := hugo.Data.projects -}}
-{{- $isEn := eq site.Language.Lang "en" -}}
-{{- $catLabelsEn := dict "app" "Application" "content" "Video & short content" "knowledge" "Knowledge hub" -}}
 
 <!-- ═══ Hero ═══ -->
 <section class="hero" aria-labelledby="hero-heading">
@@ -53,26 +51,23 @@
     </div>
     <ul class="card-grid card-grid-3" role="list">
       {{ range $projects }}
-      {{- $projTitle := cond $isEn .title_en .title -}}
-      {{- $projSub := cond $isEn .title .title_en -}}
-      {{- $catLabel := cond $isEn (index $catLabelsEn .category | default .category_label) .category_label -}}
       <li class="card project-card reveal{{ if eq .status "coming-soon" }} project-card--soon{{ end }}" data-category="{{ .category }}">
         <div class="card-top">
           {{ partial "icon.html" .id }}
           <div class="card-chips">
             {{ if eq .status "featured" }}<span class="chip chip-featured">{{ $hp.ui.badge_featured }}</span>{{ end }}
             {{ if eq .status "coming-soon" }}<span class="chip chip-soon">{{ $hp.ui.badge_soon }}</span>{{ end }}
-            <span class="chip chip-{{ .category }}">{{ $catLabel }}</span>
+            <span class="chip chip-{{ .category }}">{{ .category_label }}</span>
           </div>
         </div>
-        <h3>{{ $projTitle }}</h3>
-        <p class="card-en">{{ $projSub }}</p>
+        <h3>{{ .title }}</h3>
+        <p class="card-en">{{ .title_en }}</p>
         <p>{{ .description }}</p>
         <p class="card-audience">{{ $hp.ui.audience_prefix }} {{ .audience }}</p>
         {{ if eq .status "coming-soon" }}
-        <span class="card-status" aria-label="{{ $projTitle }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
+        <span class="card-status" aria-label="{{ .title }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
         {{ else }}
-        <a class="card-link" href="{{ .url }}" {{ partial "external-target.html" }}>{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ $projTitle }}{{ $hp.ui.opens_new_tab }}</span></a>
+        <a class="card-link" href="{{ .url }}" {{ partial "external-target.html" }}>{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ .title }}{{ $hp.ui.opens_new_tab }}</span></a>
         {{ end }}
       </li>
       {{ end }}
@@ -121,7 +116,6 @@
     </div>
     <ul class="card-grid card-grid-3" role="list">
       {{ range $projects }}{{ if eq .category "knowledge" }}
-      {{- $projTitle := cond $isEn .title_en .title -}}
       <li class="card card-compact reveal{{ if eq .status "coming-soon" }} project-card--soon{{ end }}">
         <div class="card-top">
           {{ partial "icon.html" .id }}
@@ -130,12 +124,12 @@
             {{ if eq .status "coming-soon" }}<span class="chip chip-soon">{{ $hp.ui.badge_soon }}</span>{{ end }}
           </div>
         </div>
-        <h3>{{ $projTitle }}</h3>
+        <h3>{{ .title }}</h3>
         <p>{{ .description }}</p>
         {{ if eq .status "coming-soon" }}
-        <span class="card-status" aria-label="{{ $projTitle }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
+        <span class="card-status" aria-label="{{ .title }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
         {{ else }}
-        <a class="card-link" href="{{ .url }}" {{ partial "external-target.html" }}>{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ $projTitle }}{{ $hp.ui.opens_new_tab }}</span></a>
+        <a class="card-link" href="{{ .url }}" {{ partial "external-target.html" }}>{{ .cta }}{{ partial "icon.html" "arrow" }}<span class="visually-hidden"> — {{ .title }}{{ $hp.ui.opens_new_tab }}</span></a>
         {{ end }}
       </li>
       {{ end }}{{ end }}
@@ -153,7 +147,6 @@
     </div>
     <ul class="card-grid card-grid-3" role="list">
       {{ range $projects }}{{ if eq .category "content" }}
-      {{- $projTitle := cond $isEn .title_en .title -}}
       <li class="card card-channel reveal{{ if eq .status "coming-soon" }} project-card--soon{{ end }}">
         <div class="card-top">
           {{ partial "icon.html" .id }}
@@ -162,10 +155,10 @@
             {{ if eq .status "coming-soon" }}<span class="chip chip-soon">{{ $hp.ui.badge_soon }}</span>{{ end }}
           </div>
         </div>
-        <h3>{{ $projTitle }}</h3>
+        <h3>{{ .title }}</h3>
         <p>{{ .description }}</p>
         {{ if eq .status "coming-soon" }}
-        <span class="card-status" aria-label="{{ $projTitle }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
+        <span class="card-status" aria-label="{{ .title }} — {{ $hp.ui.developing }}">{{ $hp.ui.developing }}</span>
         {{ else }}
         <a class="btn btn-outline" href="{{ .url }}" {{ partial "external-target.html" }}>{{ .cta }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a>
         {{ end }}
@@ -230,10 +223,8 @@
   </div>
 </section>
 
-<!-- ═══ News (แสดงเมื่อมีบทความ — ดึงจากไซต์ภาษาไทย) ═══ -->
-{{- $newsSite := site -}}
-{{- range hugo.Sites }}{{ if eq .Language.Lang "th" }}{{ $newsSite = . }}{{ end }}{{ end -}}
-{{- $latestNews := first 3 ((where $newsSite.RegularPages "Section" "news").ByDate.Reverse) -}}
+<!-- ═══ News (แสดงเมื่อมีบทความ) ═══ -->
+{{- $latestNews := first 3 ((where site.RegularPages "Section" "news").ByDate.Reverse) -}}
 {{- if gt (len $latestNews) 0 }}
 <section id="news" class="section section-alt" aria-labelledby="news-heading">
   <div class="container">

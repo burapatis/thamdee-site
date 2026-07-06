@@ -1,7 +1,7 @@
 {{- $isHome := .IsHome -}}
 {{- $isNewsArticle := and (eq .Section "news") (eq .Kind "page") -}}
-{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
-{{- $pageTitle := cond (eq .Kind "404") (cond (eq site.Language.Lang "en") "Page not found" "ไม่พบหน้าที่คุณต้องการ") .Title -}}
+{{- $hp := index hugo.Data.homepage "th" -}}
+{{- $pageTitle := cond (eq .Kind "404") "ไม่พบหน้าที่คุณต้องการ" .Title -}}
 {{- $title := cond $isHome site.Title (printf "%s | %s" $pageTitle site.Params.siteName) -}}
 {{- $desc := site.Params.description -}}
 {{- if $isHome -}}
@@ -16,7 +16,7 @@
 {{- if and $isNewsArticle .Params.cover -}}
   {{- $ogImage = .Params.cover | absURL -}}
 {{- end -}}
-{{- $ogLocale := replace site.Language.Locale "-" "_" -}}
+{{- $ogLocale := "th_TH" -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ $title }}</title>
@@ -37,28 +37,8 @@
 {{- end }}
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="{{ $ogLocale }}">
-{{- range hugo.Sites }}
-{{- if ne .Language.Lang $.Site.Language.Lang }}
-<meta property="og:locale:alternate" content="{{ replace .Language.Locale "-" "_" }}">
-{{- end }}
-{{- end }}
+<meta property="og:locale" content="th_TH">
 <meta name="twitter:card" content="summary_large_image">
-
-{{- range hugo.Sites }}
-  {{- if eq .Language.Lang $.Site.Language.Lang }}
-<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ $.Permalink }}">
-  {{- else }}
-    {{- with index (where $.Translations "Language.Lang" .Language.Lang) 0 }}
-<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
-    {{- end }}
-  {{- end }}
-{{- end }}
-{{- range hugo.Sites }}
-  {{- if eq .Language.Lang "th" }}
-<link rel="alternate" hreflang="x-default" href="{{ .Home.Permalink }}">
-  {{- end }}
-{{- end }}
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">

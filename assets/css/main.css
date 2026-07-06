@@ -397,18 +397,6 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
   margin-bottom: 1.5rem;
 }
 
-/* ── Language switcher ────────────────────────────────────────── */
-.lang-switch {
-  display: inline-flex; align-items: center; gap: 0.35rem;
-  font-size: 0.88rem; font-weight: 600;
-}
-.lang-current { color: var(--green-700); padding: 0.35rem 0.55rem; }
-.lang-link {
-  color: var(--ink-soft); text-decoration: none; padding: 0.35rem 0.55rem; border-radius: 8px;
-}
-.lang-link:hover { color: var(--green-800); background: var(--green-100); }
-.nav-lang { margin-top: 0.5rem; }
-
 /* ── Pagefind search UI ───────────────────────────────────────── */
 .pagefind-wrap { margin-top: 0.5rem; }
 .pagefind-ui {
@@ -502,7 +490,6 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
   .site-nav a:not(.btn) { padding: 0.85rem 0.8rem; font-size: 1.05rem; }
   .nav-cta { margin: 0.6rem 0 0; }
   .nav-cta .btn { width: 100%; }
-  .nav-lang { margin: 0.75rem 0 0; padding-top: 0.5rem; border-top: 1px solid var(--line); }
 }
 @media (max-width: 620px) {
   .card-grid-3, .card-grid-4, .pillar-grid { grid-template-columns: 1fr; }

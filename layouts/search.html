@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
+{{- $hp := index hugo.Data.homepage "th" -}}
 <section class="section section-alt search-page" aria-labelledby="search-heading">
   <div class="container container-narrow">
     <div class="section-head">
@@ -9,7 +9,7 @@
     </div>
     <div id="pagefind-search" class="pagefind-wrap"></div>
     <p class="search-unavailable fine-print" id="search-unavailable" hidden>{{ $hp.search.unavailable }}</p>
-    <p class="search-back"><a class="card-link" href="{{ "/" | relLangURL }}">← {{ $hp.search.back_home }}</a></p>
+    <p class="search-back"><a class="card-link" href="/">← {{ $hp.search.back_home }}</a></p>
   </div>
 </section>
 {{ end }}
@@ -31,8 +31,8 @@
     element: "#pagefind-search",
     showImages: false,
     translations: {
-      placeholder: {{ if eq site.Language.Lang "en" }}"Search this site"{{ else }}"ค้นหาในเว็บไซต์นี้"{{ end }},
-      clear_search: {{ if eq site.Language.Lang "en" }}"Clear"{{ else }}"ล้าง"{{ end }}
+      placeholder: "ค้นหาในเว็บไซต์นี้",
+      clear_search: "ล้าง"
     }
   });
 })();

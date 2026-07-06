@@ -1,9 +1,9 @@
-{{- $hp := index hugo.Data.homepage site.Language.Lang -}}
+{{- $hp := index hugo.Data.homepage "th" -}}
 <footer class="site-footer" id="footer" data-pagefind-ignore>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="{{ "/" | relLangURL }}" aria-label="Thamdee — {{ $hp.ui.back_home }}">
+        <a class="brand" href="/" aria-label="Thamdee — {{ $hp.ui.back_home }}">
           {{ partial "logo.html" . }}
           <span class="brand-text brand-text-light">Thamdee<span class="brand-dot">.</span></span>
         </a>
@@ -15,27 +15,27 @@
         <h2 class="footer-heading">Ecosystem</h2>
         <ul>
           {{ range hugo.Data.projects }}
-          <li><a href="{{ .url }}" {{ partial "external-target.html" }}>{{ if eq $.Site.Language.Lang "en" }}{{ .title_en }}{{ else }}{{ .title }}{{ end }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a></li>
+          <li><a href="{{ .url }}" {{ partial "external-target.html" }}>{{ .title }}<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a></li>
           {{ end }}
         </ul>
       </nav>
 
-      <nav class="footer-col" aria-label="{{ if eq site.Language.Lang "en" }}Site links{{ else }}ลิงก์เว็บไซต์{{ end }}">
-        <h2 class="footer-heading">{{ if eq site.Language.Lang "en" }}This site{{ else }}เว็บไซต์นี้{{ end }}</h2>
+      <nav class="footer-col" aria-label="ลิงก์เว็บไซต์">
+        <h2 class="footer-heading">เว็บไซต์นี้</h2>
         <ul>
-          <li><a href="{{ "/" | relLangURL }}#about">{{ if eq site.Language.Lang "en" }}About Thamdee{{ else }}เกี่ยวกับ Thamdee{{ end }}</a></li>
-          <li><a href="{{ "/" | relLangURL }}#founder">{{ if eq site.Language.Lang "en" }}About the founder{{ else }}เกี่ยวกับผู้จัดทำ{{ end }}</a></li>
-          <li><a href="{{ "/" | relLangURL }}#contact">{{ if eq site.Language.Lang "en" }}Contact & feedback{{ else }}ติดต่อและแจ้งข้อเสนอแนะ{{ end }}</a></li>
-          <li><a href="/news/">{{ if eq site.Language.Lang "en" }}News{{ else }}ข่าวสาร{{ end }}</a></li>
-          <li><a href="{{ "search" | relLangURL }}">{{ $hp.search.title }}</a></li>
-          <li><a href="/privacy/">{{ if eq site.Language.Lang "en" }}Privacy Policy{{ else }}นโยบายความเป็นส่วนตัว{{ end }}</a></li>
-          <li><a href="/terms/">{{ if eq site.Language.Lang "en" }}Terms of Use{{ else }}ข้อกำหนดการใช้งาน{{ end }}</a></li>
-          <li><a href="/disclaimer/">{{ if eq site.Language.Lang "en" }}Disclaimer{{ else }}ข้อจำกัดความรับผิดชอบ{{ end }}</a></li>
+          <li><a href="/#about">เกี่ยวกับ Thamdee</a></li>
+          <li><a href="/#founder">เกี่ยวกับผู้จัดทำ</a></li>
+          <li><a href="/#contact">ติดต่อและแจ้งข้อเสนอแนะ</a></li>
+          <li><a href="/news/">ข่าวสาร</a></li>
+          <li><a href="/search/">{{ $hp.search.title }}</a></li>
+          <li><a href="/privacy/">นโยบายความเป็นส่วนตัว</a></li>
+          <li><a href="/terms/">ข้อกำหนดการใช้งาน</a></li>
+          <li><a href="/disclaimer/">ข้อจำกัดความรับผิดชอบ</a></li>
         </ul>
       </nav>
 
       <div class="footer-col">
-        <h2 class="footer-heading">{{ if eq site.Language.Lang "en" }}Follow us{{ else }}ติดตามเรา{{ end }}</h2>
+        <h2 class="footer-heading">ติดตามเรา</h2>
         <ul>
           <li><a href="{{ site.Params.youtube }}" {{ partial "external-target.html" }}>YouTube<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a></li>
           <li><a href="{{ site.Params.tiktok }}" {{ partial "external-target.html" }}>TikTok<span class="visually-hidden">{{ $hp.ui.opens_new_tab }}</span></a></li>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© {{ site.Params.foundingYear }}–{{ now.Year }} Thamdee. {{ if eq site.Language.Lang "en" }}All rights reserved.{{ else }}สงวนลิขสิทธิ์{{ end }}</p>
+      <p>© {{ site.Params.foundingYear }}–{{ now.Year }} Thamdee. สงวนลิขสิทธิ์</p>
       <p class="footer-ai-note">{{ $hp.footer.ai_note }}</p>
     </div>
   </div>
