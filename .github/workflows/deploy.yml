@@ -93,9 +93,9 @@ jobs:
   sync-hub:
     needs: deploy
     runs-on: ubuntu-latest
-    # ล้มเหลวได้ — ไม่กระทบ deploy thamdee.com (แก้ HUB_DISPATCH_TOKEN หรือปิด job นี้ได้)
+    # ล้มเหลวได้ — ไม่กระทบ deploy thamdee.com
+    # ไม่ต้องการ sync hub: ลบ secret HUB_DISPATCH_TOKEN (job จะ fail แต่ถูกข้าม)
     continue-on-error: true
-    if: ${{ secrets.HUB_DISPATCH_TOKEN != '' }}
     steps:
       # PAT (classic): scope "repo" ทั้งหมด + authorize SSO (ถ้า org บังคับ)
       # PAT (fine-grained): เลือก repo burapatis/thamdee-hub + Metadata Read + Contents Read
