@@ -46,7 +46,17 @@
     </div>
 
     <div class="footer-bottom">
-      <p>© {{ site.Params.foundingYear }}–{{ now.Year }} Thamdee. สงวนลิขสิทธิ์</p>
+      <div class="footer-bottom-meta">
+        <p>© {{ site.Params.foundingYear }}–{{ now.Year }} Thamdee. สงวนลิขสิทธิ์</p>
+        {{- $stats := index hugo.Data "analytics" -}}
+        {{- if and site.Params.showVisitorCount $stats.visits -}}
+        <p class="footer-visitor-count" title="{{ $hp.footer.visitor_count_note }}">
+          <span class="footer-visitor-icon" aria-hidden="true">{{ partial "icon.html" "users" }}</span>
+          <span class="footer-visitor-label">{{ $hp.footer.visitor_count }}:</span>
+          <span class="footer-visitor-number">{{ $stats.visits | lang.FormatNumber 0 }}</span>
+        </p>
+        {{- end -}}
+      </div>
       <p class="footer-ai-note">{{ $hp.footer.ai_note }}</p>
     </div>
   </div>

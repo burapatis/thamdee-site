@@ -28,7 +28,10 @@ disableKinds = ["taxonomy", "term"]
   youtube = "https://media.thamdee.com"
   tiktok = "https://media.thamdee.com"
   foundingYear = 2024
-  cloudflareAnalyticsToken = ""
+  # Cloudflare Web Analytics — beacon (ตั้ง token จาก Dashboard → Web Analytics → Manage site)
+  cloudflareAnalyticsToken = "f3297380289b48dbb76c9fdd787ba2aa"
+  # แสดงตัวนับผู้เข้าชมใน footer เมื่อ data/analytics.yaml มีค่า visits (ดึงจาก GraphQL ตอน deploy)
+  showVisitorCount = true
 
 [menus]
   [[menus.main]]

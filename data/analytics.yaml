@@ -1,0 +1,6 @@
+# อัปเดตอัตโนมัติโดย CI (scripts/fetch-cf-analytics.sh) เมื่อตั้งค่า Cloudflare secrets แล้ว
+# ค่า null = ยังไม่แสดงตัวนับบนเว็บ
+visits: null
+pageViews: null
+updatedAt: ""
+source: cloudflare-web-analytics
