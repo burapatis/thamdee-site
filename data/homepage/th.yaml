@@ -111,8 +111,8 @@ founder:
 footer:
   about: "Thamdee Ecosystem คือระบบนิเวศของการเรียนรู้ เทคโนโลยี และคอนเทนต์ ที่มุ่งสร้างประโยชน์จริงต่อการศึกษา ชีวิต และสังคม"
   ai_note: "เนื้อหาบางส่วนจัดทำโดยมี AI ช่วยสนับสนุน และผ่านการตรวจทานโดยทีมงานก่อนเผยแพร่"
-  visitor_count: "ผู้เข้าชม"
-  visitor_count_note: "จาก Cloudflare Web Analytics"
+  visitor_count: "ผู้เข้าชม (6 เดือนล่าสุด)"
+  visitor_count_note: "จาก Cloudflare Web Analytics · อัปเดตทุกครั้งที่ deploy"
 
 hub_card:
   title: "อ่านต่อที่ Thamdee Hub"

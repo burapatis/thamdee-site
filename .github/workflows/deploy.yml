@@ -40,7 +40,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_WEB_ANALYTICS_SITE_TAG: ${{ secrets.CLOUDFLARE_WEB_ANALYTICS_SITE_TAG }}
-          CLOUDFLARE_ANALYTICS_SINCE_YEAR: "2024"
+          CLOUDFLARE_ANALYTICS_LOOKBACK_DAYS: "175"
         run: bash scripts/fetch-cf-analytics.sh
 
       - name: Setup Pages
