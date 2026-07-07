@@ -8,6 +8,12 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/data/analytics.yaml"
 HUGO_CONFIG="$ROOT/hugo.toml"
 
+warn_skip() {
+  echo "$1" >&2
+  echo "Skipping visitor count fetch — site deploy continues." >&2
+  exit 0
+}
+
 cf_api() {
   curl -fsS "https://api.cloudflare.com/client/v4/$1" \
     -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
@@ -58,19 +64,19 @@ resolve_site_tag() {
 }
 
 if [[ -z "${CLOUDFLARE_API_TOKEN:-}" || -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]]; then
-  echo "Cloudflare analytics secrets not set — skipping visitor count fetch."
-  exit 0
+  warn_skip "Cloudflare analytics secrets not set."
 fi
 
 SITE_TAG="${CLOUDFLARE_WEB_ANALYTICS_SITE_TAG:-}"
 if [[ -z "$SITE_TAG" ]]; then
   BEACON_TOKEN=$(read_beacon_token)
   if [[ -z "$BEACON_TOKEN" ]]; then
-    echo "No cloudflareAnalyticsToken in hugo.toml and CLOUDFLARE_WEB_ANALYTICS_SITE_TAG not set — skipping."
-    exit 0
+    warn_skip "No cloudflareAnalyticsToken in hugo.toml and CLOUDFLARE_WEB_ANALYTICS_SITE_TAG not set."
   fi
   echo "Resolving site_tag from beacon token in hugo.toml..."
-  SITE_TAG=$(resolve_site_tag "$BEACON_TOKEN")
+  if ! SITE_TAG=$(resolve_site_tag "$BEACON_TOKEN"); then
+    warn_skip "Could not resolve site_tag from Cloudflare API."
+  fi
   echo "Using site_tag: ${SITE_TAG}"
 fi
 
@@ -83,9 +89,9 @@ query WebAnalyticsVisits($accountTag: string!, $filter: AccountRumPageloadEvents
   viewer {
     accounts(filter: { accountTag: $accountTag }) {
       rumPageloadEventsAdaptiveGroups(limit: 10000, filter: $filter) {
+        count
         sum {
           visits
-          pageViews
         }
       }
     }
@@ -117,16 +123,17 @@ PAYLOAD=$(jq -n \
 RESPONSE=$(curl -fsS "https://api.cloudflare.com/client/v4/graphql" \
   -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
   -H "Content-Type: application/json" \
-  --data-binary "$PAYLOAD")
+  --data-binary "$PAYLOAD" || true)
 
 if echo "$RESPONSE" | jq -e '.errors | length > 0' >/dev/null 2>&1; then
-  echo "Cloudflare GraphQL error:"
-  echo "$RESPONSE" | jq '.errors'
-  exit 1
+  echo "Cloudflare GraphQL error:" >&2
+  echo "$RESPONSE" | jq '.errors' >&2
+  warn_skip "GraphQL query failed."
 fi
 
-VISITS=$(echo "$RESPONSE" | jq '[.data.viewer.accounts[0].rumPageloadEventsAdaptiveGroups[]?.sum.visits // 0] | add // 0')
-PAGEVIEWS=$(echo "$RESPONSE" | jq '[.data.viewer.accounts[0].rumPageloadEventsAdaptiveGroups[]?.sum.pageViews // 0] | add // 0')
+GROUPS=$(echo "$RESPONSE" | jq '.data.viewer.accounts[0].rumPageloadEventsAdaptiveGroups // []')
+VISITS=$(echo "$GROUPS" | jq '[.[].sum.visits // 0] | add // 0')
+PAGEVIEWS=$(echo "$GROUPS" | jq '[.[].count // 0] | add // 0')
 UPDATED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 cat > "$OUT" <<YAML
