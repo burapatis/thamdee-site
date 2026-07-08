@@ -13,6 +13,12 @@ hero:
     url: "#apps"
   note: "เข้าใช้งานได้ฟรี ไม่ต้องสมัครสมาชิก"
 
+infographic:
+  src: "/images/thamdee-ecosystem-infographic.webp"
+  alt: "อินโฟกราฟิก Thamdee Ecosystem — ระบบนิเวศแห่งการเรียนรู้และเทคโนโลยีเพื่อทุกคน ครอบคลุมแอปมือถือ ศูนย์ความรู้ ช่องทางคอนเทนต์ และกลุ่มเป้าหมาย"
+  width: 1920
+  height: 1279
+
 about:
   eyebrow: "เกี่ยวกับ Thamdee"
   heading: "ทำสิ่งดี ให้เกิดประโยชน์จริง"

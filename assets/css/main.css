@@ -205,6 +205,19 @@ ul[role="list"] { list-style: none; margin: 0; padding: 0; }
 .btn-ghost { color: var(--green-700); background: var(--green-100); }
 .btn-ghost:hover { background: var(--line); color: var(--green-800); }
 
+/* ── Full-bleed infographic ───────────────────────────────────── */
+.infographic {
+  margin: 0;
+  padding: 0;
+  background: var(--surface);
+  border-block: 1px solid var(--line);
+}
+.infographic img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ── Section scaffolding ──────────────────────────────────────── */
 .section { padding-block: var(--section-y); }
 .section-alt { background: var(--alt); }

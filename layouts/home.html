@@ -21,6 +21,20 @@
   </div>
 </section>
 
+<!-- ═══ Ecosystem Infographic ═══ -->
+{{- with $hp.infographic }}
+<section class="infographic" aria-label="{{ .alt }}">
+  <img
+    src="{{ .src }}"
+    alt="{{ .alt }}"
+    width="{{ .width }}"
+    height="{{ .height }}"
+    loading="lazy"
+    decoding="async"
+  >
+</section>
+{{- end }}
+
 <!-- ═══ About ═══ -->
 <section id="about" class="section" aria-labelledby="about-heading">
   <div class="container">
