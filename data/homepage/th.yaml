@@ -16,8 +16,8 @@ hero:
 infographic:
   src: "/images/thamdee-ecosystem-infographic.webp"
   alt: "อินโฟกราฟิก Thamdee Ecosystem — ระบบนิเวศแห่งการเรียนรู้และเทคโนโลยีเพื่อทุกคน ครอบคลุมแอปมือถือ ศูนย์ความรู้ ช่องทางคอนเทนต์ และกลุ่มเป้าหมาย"
-  width: 1920
-  height: 1279
+  width: 1024
+  height: 682
 
 about:
   eyebrow: "เกี่ยวกับ Thamdee"
