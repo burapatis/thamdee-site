@@ -94,15 +94,23 @@ jobs:
   sync-hub:
     needs: deploy
     runs-on: ubuntu-latest
-    # ล้มเหลวได้ — ไม่กระทบ deploy thamdee.com
-    # ไม่ต้องการ sync hub: ลบ secret HUB_DISPATCH_TOKEN (job จะ fail แต่ถูกข้าม)
+    # ล้มเหลวได้ — ไม่กระทบ deploy thamdee.com (hub ยังมี cron ดึง RSS ทุก 4 ชม.)
     continue-on-error: true
     steps:
-      # PAT (classic): scope "repo" ทั้งหมด + authorize SSO (ถ้า org บังคับ)
-      # PAT (fine-grained): เลือก repo burapatis/thamdee-hub + Metadata Read + Contents Read
+      # PAT ต้องมีสิทธิ์ actions:write บน burapatis/thamdee-hub
+      # classic PAT: scope repo (หรือ public_repo + workflow สำหรับ public repo)
+      # fine-grained PAT: เลือก repo thamdee-hub + Actions Read and write
       - name: Trigger thamdee-hub rebuild
-        uses: peter-evans/repository-dispatch@v4
-        with:
-          token: ${{ secrets.HUB_DISPATCH_TOKEN }}
-          repository: burapatis/thamdee-hub
-          event-type: thamdee-site-deployed
+        env:
+          GH_TOKEN: ${{ secrets.HUB_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "::warning::HUB_DISPATCH_TOKEN is not set — skipping hub sync (hub cron will refresh later)"
+            exit 0
+          fi
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            repos/burapatis/thamdee-hub/actions/workflows/deploy.yml/dispatches \
+            -f ref=main
+          echo "Triggered thamdee-hub deploy workflow"
