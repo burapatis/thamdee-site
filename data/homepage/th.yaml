@@ -100,7 +100,11 @@ founder:
   heading: "เบื้องหลัง Thamdee"
   name: "Boorapatis Ploysuwan"  # หากต้องการแสดงชื่อภาษาไทย แก้ค่านี้ได้เลย
   role_line: "นักการศึกษาและผู้จัดทำ Thamdee Ecosystem"
-  initials: "BP"
+  photo:
+    src: "/images/burapatis-ploysuwan.webp"
+    alt: "ภาพพอร์ตเทรต Boorapatis Ploysuwan ผู้จัดทำ Thamdee Ecosystem"
+    width: 1024
+    height: 819
   education: "ศึกษาด้านการศึกษา โสตทัศนศึกษา และการบริหารการศึกษา"
   experience_intro: "เคยทำงานในแวดวงการศึกษาและการเรียนรู้มาอย่างต่อเนื่อง ตั้งแต่ระดับห้องเรียนจนถึงระดับองค์กร เช่น"
   roles:

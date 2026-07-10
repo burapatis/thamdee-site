@@ -215,7 +215,17 @@
     </div>
     <div class="founder-card reveal">
       <div class="founder-side">
-        <span class="founder-avatar" aria-hidden="true">{{ $hp.founder.initials }}</span>
+        {{- with $hp.founder.photo }}
+        <img
+          class="founder-avatar"
+          src="{{ .src }}"
+          alt="{{ .alt }}"
+          width="{{ .width }}"
+          height="{{ .height }}"
+          loading="lazy"
+          decoding="async"
+        >
+        {{- end }}
         <p class="founder-name">{{ $hp.founder.name }}</p>
         <p class="founder-role">{{ $hp.founder.role_line }}</p>
         <p class="founder-edu">{{ $hp.founder.education }}</p>

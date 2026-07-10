@@ -93,7 +93,11 @@ founder:
   heading: "Behind Thamdee"
   name: "Boorapatis Ploysuwan"
   role_line: "Educator and creator of Thamdee Ecosystem"
-  initials: "BP"
+  photo:
+    src: "/images/burapatis-ploysuwan.webp"
+    alt: "Portrait of Boorapatis Ploysuwan, creator of Thamdee Ecosystem"
+    width: 1024
+    height: 819
   education: "Background in education, education of the deaf, and educational administration"
   experience_intro: "Years of work across education and learning — from the classroom to organisational leadership, including:"
   roles:
