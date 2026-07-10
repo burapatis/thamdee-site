@@ -1,14 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="@7H-@7-@-*2#">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#eff5f0"/>
-      <stop offset="100%" stop-color="#e2efe8"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="675" fill="url(#bg)"/>
-  <rect x="380" y="140" width="440" height="280" rx="24" fill="#17614f" opacity="0.12"/>
-  <rect x="520" y="220" width="160" height="200" rx="12" fill="#17614f" opacity="0.2"/>
-  <text x="600" y="300" text-anchor="middle" fill="#17614f" font-family="system-ui, 'Sukhumvit Set', sans-serif" font-size="48" font-weight="700">@7H-@7-@-*2#</text>
-  <text x="600" y="420" text-anchor="middle" fill="#51635b" font-family="system-ui, sans-serif" font-size="24">Thamdee</text>
-</svg>
