@@ -19,7 +19,7 @@ disableKinds = ["taxonomy", "term"]
 [params]
   siteName = "Thamdee Ecosystem"
   shortName = "Thamdee"
-  description = "Thamdee Ecosystem คือระบบนิเวศของการเรียนรู้ เทคโนโลยี และคอนเทนต์ รวมแอปมือถือ ศูนย์ความรู้สำหรับครู ผู้บริหาร กฎหมายการศึกษา และคอนเทนต์ AI ไว้ในที่เดียว"
+  description = "Thamdee Ecosystem คือระบบนิเวศของการเรียนรู้ เทคโนโลยี และคอนเทนต์ รวมแอปมือถือ ศูนย์ความรู้สำหรับครู ผู้บริหาร กรอบภาวะผู้นำแบบไทยพอดี (TBLF) กฎหมายการศึกษา และคอนเทนต์ AI ไว้ในที่เดียว"
   ogHomeTitle = "Thamdee Ecosystem — เรียนรู้ เทคโนโลยี และสิ่งดี ๆ ในที่เดียว"
   tagline_th = "ทำสิ่งดี ให้เกิดประโยชน์จริง"
   tagline_en = "Good things, made truly useful."

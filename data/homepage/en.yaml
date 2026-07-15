@@ -28,8 +28,8 @@ about:
 
 ecosystem:
   eyebrow: "Ecosystem"
-  heading: "One brand, eight connected projects"
-  lead: "Every Thamdee project works together — apps for daily life, knowledge hubs for depth, and content to keep you growing. Start wherever fits you best."
+  heading: "One brand, nine connected projects"
+  lead: "Every Thamdee project works together — apps for daily life, knowledge hubs and research frameworks for depth, and content to keep you growing. Start wherever fits you best."
 
 apps:
   eyebrow: "Thamdee Apps"
@@ -47,7 +47,7 @@ apps:
 knowledge:
   eyebrow: "Knowledge Hubs"
   heading: "Knowledge centres for education professionals"
-  lead: "Specialised resources organised for easy search, reliable reference, and practical use — covering teaching, school leadership, education law, and global citizenship education."
+  lead: "Specialised resources organised for easy search, reliable reference, and practical use — covering teaching, school leadership, the Thai Balanced Leadership Framework (TBLF), education law, and global citizenship education."
 
 content:
   eyebrow: "Content Channels"

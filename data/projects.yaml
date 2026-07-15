@@ -88,6 +88,17 @@
   status: live
   audience: "ผู้บริหารสถานศึกษา"
 
+- id: tblf
+  title: "ภาวะผู้นำแบบไทยพอดี"
+  title_en: "TBLF"
+  category: knowledge
+  category_label: "กรอบวิจัย"
+  description: "กรอบแนวคิดที่ช่วยให้ผู้บริหารคิดอย่างเป็นระบบ ตัดสินใจอย่างสมดุล และเรียนรู้จากผลลัพธ์อย่างต่อเนื่อง — ร่วมพัฒนาแนวคิดเพื่อเด็กและสังคมไทย"
+  url: "https://tblf.thamdee.com"
+  cta: "สำรวจกรอบ TBLF"
+  status: live
+  audience: "ผู้บริหาร ผู้นำการศึกษา และผู้สนใจภาวะผู้นำแบบไทย"
+
 - id: law
   title: "กฎหมายการศึกษา"
   title_en: "Education Law"

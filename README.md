@@ -14,7 +14,7 @@ Landing Page หลักของ Thamdee Ecosystem สร้างด้วย
 │   ├── terms.md               # ข้อกำหนดการใช้งาน
 │   └── disclaimer.md          # ข้อจำกัดความรับผิดชอบ + Responsible AI
 ├── data/
-│   ├── projects.yaml          # ★ โปรเจกต์ทั้ง 8 (เพิ่ม/แก้โปรเจกต์ที่นี่)
+│   ├── projects.yaml          # ★ โปรเจกต์ทั้ง 9 (เพิ่ม/แก้โปรเจกต์ที่นี่)
 │   └── homepage.yaml          # ★ ข้อความทุก section ของหน้าแรก
 ├── layouts/
 │   ├── baseof.html            # โครง HTML หลัก
@@ -75,11 +75,11 @@ hugo --gc --minify    # build จริงลงโฟลเดอร์ public/
 
 4. รอ DNS อัปเดตแล้วติ๊ก **Enforce HTTPS**
 
-5. **Subdomain ของโปรเจกต์ย่อย** (`app.` `hub.` `teacher.` `gced.` `admin.` `law.` `youtube.` `tiktok.`): แต่ละตัวเพิ่ม CNAME record ชี้ไปยังปลายทางของโปรเจกต์นั้น เช่น repo GitHub Pages แยกของแต่ละเว็บ หรือใช้ redirect (เช่น `youtube.thamdee.com` → redirect ไปหน้า YouTube channel ผ่านบริการ redirect ของ DNS/Cloudflare)
+5. **Subdomain ของโปรเจกต์ย่อย** (`app.` `hub.` `teacher.` `gced.` `admin.` `tblf.` `law.` `youtube.` `tiktok.`): แต่ละตัวเพิ่ม CNAME record ชี้ไปยังปลายทางของโปรเจกต์นั้น เช่น repo GitHub Pages แยกของแต่ละเว็บ หรือใช้ redirect (เช่น `youtube.thamdee.com` → redirect ไปหน้า YouTube channel ผ่านบริการ redirect ของ DNS/Cloudflare)
 
 ## คุณภาพที่ built-in มาแล้ว
 
-- **SEO:** title/description, canonical, Open Graph + รูป 1200×630, JSON-LD (Organization + WebSite + ItemList 8 โปรเจกต์), sitemap.xml, robots.txt
+- **SEO:** title/description, canonical, Open Graph + รูป 1200×630, JSON-LD (Organization + WebSite + ItemList 9 โปรเจกต์), sitemap.xml, robots.txt
 - **Accessibility:** skip link, semantic headings (H1 เดียว), focus ring ชัดเจน, ปุ่มขนาด ≥48px, contrast ผ่าน WCAG AA, เมนูมือถือใช้ aria-expanded + ปิดด้วย Escape, รองรับ `prefers-reduced-motion`
 - **Performance:** ไม่มี framework, JS ~1 KB, CSS ไฟล์เดียว minify + fingerprint, ฟอนต์ `display=swap`
 - **ความน่าเชื่อถือ:** หน้า Privacy (PDPA), Terms, Disclaimer + Responsible AI note ใน footer
